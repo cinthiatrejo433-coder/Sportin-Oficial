@@ -1,15 +1,460 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<header>
-<nav>
-    <a href="index.html">Inicio</a>
-    <a href="tienda.html">Tienda</a>
-    <a href="colecciones.html">Colecciones</a>
-    <a href="packs.html">Packs</a>
-    <a href="resenas.html">Reseñas</a>
-    <a href="pagos-envios.html">Pagos y Envíos</a>
-    <a href="contacto.html">Contacto</a>
-</nav>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPORTÍN | Ropa Deportiva</title>
 
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f8f9fa;
+    color:#222;
+}
+
+header{
+    background:#fff;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+.logo{
+    font-size:2rem;
+    font-weight:900;
+    color:#71bb01;
+}
+
+nav{
+    display:flex;
+    gap:30px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#222;
+    font-weight:600;
+}
+
+nav a:hover{
+    color:#71bb01;
+}
+
+.hero{
+    min-height:90vh;
+    background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+    url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=80');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    padding:0 8%;
+    color:white;
+}
+
+.hero-content{
+    max-width:650px;
+}
+
+.hero span{
+    background:#71bb01;
+    padding:8px 18px;
+    border-radius:30px;
+    font-weight:bold;
+}
+
+.hero h1{
+    font-size:4rem;
+    margin:25px 0;
+    line-height:1.1;
+}
+
+.hero p{
+    font-size:1.2rem;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    background:#71bb01;
+    color:white;
+    text-decoration:none;
+    border-radius:50px;
+    font-weight:bold;
+}
+
+.section{
+    padding:90px 8%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.5rem;
+    margin-bottom:50px;
+}
+
+.benefits{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.card h3{
+    margin:15px 0;
+}
+
+.categories{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.category{
+    background:#71bb01;
+    color:white;
+    padding:60px 20px;
+    text-align:center;
+    border-radius:20px;
+    font-size:1.4rem;
+    font-weight:bold;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.product{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.product img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.product-info{
+    padding:20px;
+}
+
+.price{
+    color:#71bb01;
+    font-size:1.2rem;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.about{
+    background:white;
+    text-align:center;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:25px;
+    text-align:center;
+}
+
+.stat{
+    background:#71bb01;
+    color:white;
+    padding:40px;
+    border-radius:20px;
+}
+
+.stat h2{
+    font-size:3rem;
+}
+
+.reviews{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.review{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.newsletter{
+    background:#71bb01;
+    color:white;
+    text-align:center;
+}
+
+.newsletter input{
+    padding:15px;
+    width:300px;
+    max-width:90%;
+    border:none;
+    border-radius:10px;
+    margin-top:20px;
+}
+
+.newsletter button{
+    padding:15px 25px;
+    border:none;
+    background:#222;
+    color:white;
+    border-radius:10px;
+    margin-left:10px;
+    cursor:pointer;
+}
+
+footer{
+    background:#111;
+    color:white;
+    padding:50px 8%;
+    text-align:center;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">SPORTÍN</div>
+
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Tienda</a>
+        <a href="#">Colecciones</a>
+        <a href="#">Packs</a>
+        <a href="#">Contacto</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <span>Nueva Colección 2026</span>
+        <h1>EQUIPA TU MEJOR VERSIÓN</h1>
+        <p>
+            Ropa deportiva diseñada para quienes entrenan
+            sin límites y buscan el máximo rendimiento.
+        </p>
+
+        <a href="#" class="btn">
+            Comprar Ahora
+        </a>
+    </div>
+</section>
+
+<section class="section">
+
+    <h2 class="section-title">
+        ¿Por qué elegir Sportín?
+    </h2>
+
+    <div class="benefits">
+
+        <div class="card">
+            🚚
+            <h3>Envío Rápido</h3>
+            <p>Entregas a todo el Perú.</p>
+        </div>
+
+        <div class="card">
+            🔒
+            <h3>Pago Seguro</h3>
+            <p>Protección garantizada.</p>
+        </div>
+
+        <div class="card">
+            ⭐
+            <h3>Calidad Premium</h3>
+            <p>Materiales de alto rendimiento.</p>
+        </div>
+
+        <div class="card">
+            🔄
+            <h3>Cambios Gratis</h3>
+            <p>Hasta 30 días.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2 class="section-title">
+        Categorías
+    </h2>
+
+    <div class="categories">
+
+        <div class="category">RUNNING</div>
+        <div class="category">GYM</div>
+        <div class="category">MUJER</div>
+        <div class="category">HOMBRE</div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2 class="section-title">
+        Productos Destacados
+    </h2>
+
+    <div class="products">
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f" alt="">
+            <div class="product-info">
+                <h3>Leggings PowerFit</h3>
+                <div class="price">S/89.90</div>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab" alt="">
+            <div class="product-info">
+                <h3>Polo Sport Dry</h3>
+                <div class="price">S/59.90</div>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="">
+            <div class="product-info">
+                <h3>Zapatillas Runner</h3>
+                <div class="price">S/249.90</div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section about">
+
+    <h2 class="section-title">
+        Nuestra Historia
+    </h2>
+
+    <p>
+        Sportín nació para ofrecer ropa deportiva moderna,
+        cómoda y resistente para atletas de todos los niveles.
+    </p>
+
+</section>
+
+<section class="section">
+
+    <h2 class="section-title">
+        Números que nos respaldan
+    </h2>
+
+    <div class="stats">
+
+        <div class="stat">
+            <h2>15K+</h2>
+            Clientes
+        </div>
+
+        <div class="stat">
+            <h2>98%</h2>
+            Satisfacción
+        </div>
+
+        <div class="stat">
+            <h2>48h</h2>
+            Entrega
+        </div>
+
+        <div class="stat">
+            <h2>30</h2>
+            Días devolución
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2 class="section-title">
+        Opiniones
+    </h2>
+
+    <div class="reviews">
+
+        <div class="review">
+            ★★★★★
+            <p>Excelente calidad y comodidad.</p>
+        </div>
+
+        <div class="review">
+            ★★★★★
+            <p>La mejor compra deportiva que hice.</p>
+        </div>
+
+        <div class="review">
+            ★★★★★
+            <p>Entrega rápida y productos increíbles.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section newsletter">
+
+    <h2>
+        Recibe promociones exclusivas
+    </h2>
+
+    <input type="email" placeholder="Tu correo">
+
+    <button>
+        Suscribirme
+    </button>
+
+</section>
+
+<footer>
+
+    <h2>SPORTÍN</h2>
+
+    <p>
+        Ropa deportiva de alto rendimiento.
+    </p>
+
+</footer>
+
+</body>
 </html>
+
