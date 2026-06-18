@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sportín | Colección 2026</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.page-hero{background:linear-gradient(135deg,var(--charcoal) 0%,var(--black) 100%);padding:80px 36px 48px;text-align:center;border-bottom:1px solid var(--border)}
+.page-hero h1{font-family:var(--F);font-size:clamp(2.5rem,7vw,5rem);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:.92;margin-bottom:12px}
+.page-hero p{color:var(--muted);font-size:.95rem;max-width:480px;margin:0 auto 24px}
+.filters-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;padding:28px 36px;background:var(--charcoal);border-bottom:1px solid var(--border);position:sticky;top:66px;z-index:100}
+.flt{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted);padding:7px 16px;border-radius:20px;font-size:.8rem;font-weight:500;transition:var(--t);cursor:pointer}
+.flt:hover,.flt.on{background:var(--volt);color:var(--black);border-color:var(--volt);font-weight:700}
+.sort-wrap{display:flex;align-items:center;gap:8px;margin-left:auto}
+.sort-wrap label{color:var(--muted);font-size:.78rem;white-space:nowrap}
+.sort-wrap select{background:var(--mid);border:1px solid var(--border);color:var(--white);padding:6px 10px;border-radius:8px;font-size:.8rem;outline:none;cursor:pointer}
+.sort-wrap select:focus{border-color:var(--volt)}
+.sort-wrap select option{background:var(--charcoal)}
+.catalog-wrap{padding:36px}
+.results-info{color:var(--muted);font-size:.82rem;margin-bottom:22px}
+.results-info strong{color:var(--white)}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.empty-state{text-align:center;padding:80px 0;color:var(--muted)}
+.empty-state div{font-size:4rem;margin-bottom:12px}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="page-hero">
+  <div class="sec-tag">Todo el catálogo</div>
+  <h1>COLECCIÓN <span style="color:var(--volt)">2026</span></h1>
+  <p>Ropa técnica de alto rendimiento para cada disciplina. Dry-fit, UV-protect y anti-odor.</p>
+</div>
+
+<div class="filters-bar">
+  <button class="flt on" onclick="setFilter(this,'todos')">Todos</button>
+  <button class="flt" onclick="setFilter(this,'nuevo')">🆕 Nuevo</button>
+  <button class="flt" onclick="setFilter(this,'oferta')">🏷️ Oferta</button>
+  <button class="flt" onclick="setFilter(this,'hombre')">Hombre</button>
+  <button class="flt" onclick="setFilter(this,'mujer')">Mujer</button>
+  <button class="flt" onclick="setFilter(this,'accesorios')">Accesorios</button>
+  <button class="flt" onclick="setFilter(this,'running')">Running</button>
+  <button class="flt" onclick="setFilter(this,'gym')">Gym</button>
+  <div class="sort-wrap">
+    <label>Ordenar:</label>
+    <select id="sortSel" onchange="sortProducts()">
+      <option value="default">Destacados</option>
+      <option value="price-asc">Precio: menor a mayor</option>
+      <option value="price-desc">Precio: mayor a menor</option>
+      <option value="rating">Mejor valorados</option>
+      <option value="name">A → Z</option>
+    </select>
+  </div>
+</div>
+
+<div class="catalog-wrap">
+  <div class="results-info" id="resultsInfo"></div>
+  <div class="prod-grid" id="prodGrid"></div>
+</div>
+
+</div>
+<script src="shared.js"></script>
+<script src="layout.js"></script>
+<script>
+Layout.init('coleccion.html');
+let currentFilter='todos', currentSort='default', quantities={};
+
+function getStockLabel(s){
+  if(s===0)return'<span class="stock-out">❌ Sin stock</span>';
+  if(s<=5)return`<span class="stock-low">⚠️ Solo ${s} uds</span>`;
+  return`<span class="stock-ok">✅ En stock (${s})</span>`;
+}
+
+function render(){
+  let list=currentFilter==='todos'?[...SPORTIN.PRODUCTS]:[...SPORTIN.PRODUCTS.filter(p=>p.tags.includes(currentFilter))];
+  if(currentSort==='price-asc') list.sort((a,b)=>a.price-b.price);
+  else if(currentSort==='price-desc') list.sort((a,b)=>b.price-a.price);
+  else if(currentSort==='rating') list.sort((a,b)=>b.rating-a.rating);
+  else if(currentSort==='name') list.sort((a,b)=>a.name.localeCompare(b.name));
+  document.getElementById('resultsInfo').innerHTML=`Mostrando <strong>${list.length}</strong> producto${list.length!==1?'s':''}.`;
+  const grid=document.getElementById('prodGrid');
+  if(!list.length){grid.innerHTML='<div class="empty-state"><div>🔍</div><p>No hay productos en esta categoría.</p></div>';return;}
+  grid.innerHTML='';
+  list.forEach(p=>{
+    if(!quantities[p.id]) quantities[p.id]=1;
+    const sp=p.stock/p.maxStock*100;
+    const sc=p.stock===0?'#e63946':p.stock<=5?'#f97316':'#22c55e';
+    const out=p.stock===0;
+    const card=document.createElement('div');
+    card.className='prod-card';
+    card.innerHTML=`
+      <div class="prod-img">
+        <div class="prod-img-grad"></div>
+        <div class="prod-emoji">${p.emoji}</div>
+        ${p.badge?`<span class="prod-badge ${p.btype}">${p.badge}</span>`:''}
+        <div class="stock-bar-abs"><div class="stock-bg"><div class="stock-fill" style="width:${sp}%;background:${sc}"></div></div></div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-cat">${p.cat}</div>
+        <div class="prod-name">${p.name}</div>
+        <div style="margin-bottom:6px"><span class="prod-stars">${'★'.repeat(Math.round(p.rating))}${'☆'.repeat(5-Math.round(p.rating))}</span><span class="prod-revs">(${p.rev} reseñas)</span></div>
+        <div class="prod-sizes">${p.sizes.map(s=>`<span class="sz">${s}</span>`).join('')}</div>
+        <div class="prod-stock-lbl">${getStockLabel(p.stock)}</div>
+        <div class="prod-footer">
+          <div><span class="prod-price">S/ ${p.price}</span>${p.oldP?`<span class="prod-old">S/ ${p.oldP}</span>`:''}</div>
+          <div class="add-row">
+            <div class="qty-wrap">
+              <button class="qb" id="qm${p.id}" onclick="chQty(${p.id},-1)" ${out?'disabled':''}>−</button>
+              <span class="qnum" id="qn${p.id}">${quantities[p.id]}</span>
+              <button class="qb" id="qp${p.id}" onclick="chQty(${p.id},1)" ${out||quantities[p.id]>=p.stock?'disabled':''}>+</button>
+            </div>
+            <button class="add-btn" onclick="addP(${p.id})" ${out?'disabled':''}>${out?'❌ Agotado':'🛒 Añadir'}</button>
+          </div>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function chQty(id,d){
+  const p=SPORTIN.PRODUCTS.find(x=>x.id===id);
+  quantities[id]=Math.max(1,Math.min(p.stock,quantities[id]+d));
+  document.getElementById('qn'+id).textContent=quantities[id];
+  document.getElementById('qp'+id).disabled=quantities[id]>=p.stock;
+  document.getElementById('qm'+id).disabled=quantities[id]<=1;
+}
+function addP(id){
+  SPORTIN.addToCart(id,quantities[id]||1);
+  SPORTIN.updateCartBadge();
+  Layout.refreshCartUI();
+  Layout.openCart();
+}
+function setFilter(btn,f){
+  document.querySelectorAll('.flt').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  currentFilter=f;
+  render();
+}
+function sortProducts(){
+  currentSort=document.getElementById('sortSel').value;
+  render();
+}
+
+// read URL param
+const urlF=new URLSearchParams(location.search).get('filter');
+if(urlF){
+  currentFilter=urlF;
+  document.querySelectorAll('.flt').forEach(b=>{if(b.textContent.toLowerCase().includes(urlF)||b.getAttribute('onclick')?.includes(urlF))b.classList.add('on');else b.classList.remove('on');});
+}
+render();
+</script>
+</body>
+</html>
