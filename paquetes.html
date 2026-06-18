@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sportín | Paquetes VIP</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.page-hero{background:linear-gradient(135deg,#0a0a0a 0%,#0d110d 100%);padding:80px 36px 48px;text-align:center;border-bottom:1px solid var(--border)}
+.page-hero h1{font-family:var(--F);font-size:clamp(2.5rem,7vw,5rem);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:.92;margin-bottom:12px}
+.page-hero p{color:var(--muted);font-size:.95rem;max-width:500px;margin:0 auto}
+
+.packs-section{padding:60px 36px}
+.packs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px}
+.pack-card{background:var(--card);border:2px solid var(--volt);border-radius:18px;padding:32px;position:relative;overflow:hidden;transition:var(--t)}
+.pack-card:hover{transform:translateY(-6px);box-shadow:0 24px 60px rgba(198,241,53,.14)}
+.pack-ribbon{position:absolute;top:18px;right:-30px;background:var(--volt);color:var(--black);font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:5px 40px;transform:rotate(45deg)}
+.pack-emoji{font-size:3rem;margin-bottom:14px}
+.pack-name{font-family:var(--F);font-size:1.8rem;font-weight:900;text-transform:uppercase;margin-bottom:6px}
+.pack-desc{color:var(--muted);font-size:.87rem;line-height:1.6;margin-bottom:18px}
+.pack-items{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.pack-item{color:#ccc;font-size:.84rem;display:flex;align-items:center;gap:7px}
+.pack-item::before{content:'✓';color:var(--volt);font-weight:700;flex-shrink:0}
+.pack-price-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.pack-price{font-family:var(--F);font-size:2rem;font-weight:900;color:var(--volt)}
+.pack-old{color:var(--muted);text-decoration:line-through;font-size:.9rem;margin-left:8px}
+.pack-save{background:var(--volt-dim);border:1px solid var(--volt);color:var(--volt);font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:12px}
+.pack-stock{font-size:.78rem;margin-bottom:14px}
+.stock-ok{color:var(--green)}
+.stock-low{color:var(--orange)}
+
+.pack-qty{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.pack-qty-label{color:var(--muted);font-size:.8rem}
+
+.compare-section{background:var(--charcoal);padding:60px 36px}
+.compare-table{width:100%;max-width:900px;margin:0 auto;border-collapse:collapse;font-size:.85rem}
+.compare-table th{background:var(--volt);color:var(--black);padding:14px 18px;text-align:left;font-family:var(--F);font-size:1rem;text-transform:uppercase;letter-spacing:.06em}
+.compare-table th:first-child{border-radius:10px 0 0 0}
+.compare-table th:last-child{border-radius:0 10px 0 0}
+.compare-table td{padding:12px 18px;border-bottom:1px solid var(--border);color:#ccc}
+.compare-table tr:hover td{background:var(--volt-dim)}
+.compare-table td:first-child{color:var(--white);font-weight:500}
+.check{color:var(--green)}
+.cross{color:var(--red)}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="page-hero">
+  <div class="sec-tag">🔥 En tendencia</div>
+  <h1>PAQUETES <span style="color:var(--volt)">VIP</span></h1>
+  <p>Kits completos diseñados para tu disciplina. Ahorra hasta 27% comprando en conjunto.</p>
+</div>
+
+<div class="packs-section">
+  <div class="packs-grid" id="packsGrid"></div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="compare-section">
+  <div class="sec-header">
+    <div class="sec-tag">¿Cuál es para ti?</div>
+    <h2 class="sec-title">COMPARAR <span class="a">PAQUETES</span></h2>
+  </div>
+  <div style="overflow-x:auto">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Característica</th>
+          <th>🏃 Runner Pro</th>
+          <th>🧘 Mujer Zen</th>
+          <th>🏋️ Gym Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Camiseta técnica</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Leggings / Short</td><td>Short Running</td><td>Leggings PowerFlex</td><td>Short compresión</td></tr>
+        <tr><td>Sports Bra</td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+        <tr><td>Hoodie / Chompa</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Calcetines técnicos</td><td><span class="check">✓ 3-pack</span></td><td><span class="cross">✗</span></td><td><span class="check">✓ 2 pares</span></td></tr>
+        <tr><td>Bolsa deportiva</td><td>Bolsa regalo</td><td>Bolsa deportiva</td><td>Bolsa Gym</td></tr>
+        <tr><td>Guantes gym</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Precio</td><td style="color:var(--volt);font-weight:700">S/ 179</td><td style="color:var(--volt);font-weight:700">S/ 229</td><td style="color:var(--volt);font-weight:700">S/ 259</td></tr>
+        <tr><td>Ahorro vs separado</td><td style="color:var(--green)">23%</td><td style="color:var(--green)">27%</td><td style="color:var(--green)">23%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+<script src="shared.js"></script>
+<script src="layout.js"></script>
+<script>
+Layout.init('paquetes.html');
+const qtys={};
+const grid=document.getElementById('packsGrid');
+
+SPORTIN.PACKAGES.forEach(pk=>{
+  qtys[pk.id]=1;
+  const isLow=pk.stock>0&&pk.stock<=4;
+  const isOut=pk.stock===0;
+  const card=document.createElement('div');
+  card.className='pack-card';
+  card.innerHTML=`
+    <div class="pack-ribbon">${pk.id===901?'MÁS VENDIDO':pk.id===902?'NUEVO':'TENDENCIA'}</div>
+    <div class="pack-emoji">${pk.emoji}</div>
+    <div class="pack-name">${pk.name}</div>
+    <div class="pack-desc">${pk.desc}</div>
+    <ul class="pack-items">${pk.items.map(i=>`<li class="pack-item">${i}</li>`).join('')}</ul>
+    <div class="pack-price-row">
+      <div><span class="pack-price">S/ ${pk.price}</span><span class="pack-old">S/ ${pk.oldP}</span></div>
+      <span class="pack-save">Ahorras ${pk.save}</span>
+    </div>
+    <div class="pack-stock">${isOut?'<span class="stock-out">❌ Sin stock</span>':isLow?`<span class="stock-low">⚠️ Solo ${pk.stock} disponibles</span>`:`<span class="stock-ok">✅ Disponibles: ${pk.stock}</span>`}</div>
+    <div class="pack-qty">
+      <span class="pack-qty-label">Cantidad:</span>
+      <div class="qty-wrap">
+        <button class="qb" id="qm${pk.id}" onclick="chQ(${pk.id},-1)" ${isOut?'disabled':''}>−</button>
+        <span class="qnum" id="qn${pk.id}">1</span>
+        <button class="qb" id="qp${pk.id}" onclick="chQ(${pk.id},1)" ${isOut||pk.stock<=1?'disabled':''}>+</button>
+      </div>
+    </div>
+    <button class="btn-v" style="width:100%;justify-content:center" onclick="addPack(${pk.id})" ${isOut?'disabled':''}>${isOut?'❌ Sin stock':'🛒 Añadir al carrito'}</button>`;
+  grid.appendChild(card);
+});
+
+function chQ(id,d){
+  const pk=SPORTIN.PACKAGES.find(x=>x.id===id);
+  qtys[id]=Math.max(1,Math.min(pk.stock,qtys[id]+d));
+  document.getElementById('qn'+id).textContent=qtys[id];
+  document.getElementById('qp'+id).disabled=qtys[id]>=pk.stock;
+  document.getElementById('qm'+id).disabled=qtys[id]<=1;
+}
+function addPack(id){
+  SPORTIN.addToCart(id,qtys[id]||1);
+  SPORTIN.updateCartBadge();
+  Layout.refreshCartUI();
+  Layout.openCart();
+}
+</script>
+</body>
+</html>
