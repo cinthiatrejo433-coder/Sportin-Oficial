@@ -1,460 +1,248 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SPORTÍN | Ropa Deportiva</title>
-
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sportín | Inicio</title>
+<meta name="description" content="Sportín – Ropa deportiva de alto rendimiento para atletas apasionados. Envío gratis, devoluciones sin costo, pago 100% seguro.">
+<link rel="stylesheet" href="shared.css">
 <style>
+/* ── PUSH ── */
+#pushOverlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;animation:fadeIn .4s}
+.push-box{background:var(--charcoal);border:1px solid var(--volt);border-radius:22px;padding:40px 34px;max-width:420px;width:92%;text-align:center;animation:slideUp .5s cubic-bezier(.4,0,.2,1)}
+.push-bell{width:68px;height:68px;background:var(--volt);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 18px;animation:bellShake 1s .6s}
+.push-box h2{font-family:var(--F);font-size:1.8rem;font-weight:900;text-transform:uppercase;margin-bottom:10px}
+.push-box p{color:var(--muted);font-size:.87rem;line-height:1.6;margin-bottom:26px}
+.push-pill{display:inline-block;background:var(--volt-dim);border:1px solid var(--volt);color:var(--volt);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:14px}
+.push-yes{width:100%;background:var(--volt);color:var(--black);border:none;padding:14px;border-radius:9px;font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:var(--t);margin-bottom:10px}
+.push-yes:hover{background:var(--volt-d);transform:translateY(-2px)}
+.push-no{background:none;border:none;color:var(--muted);font-size:.82rem;text-decoration:underline;cursor:pointer}
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:80px 36px 60px;position:relative;overflow:hidden;background:linear-gradient(140deg,#0a0a0a 0%,#0e0e0e 60%,#060d06 100%)}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(198,241,53,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(198,241,53,.04) 1px,transparent 1px);background-size:52px 52px}
+.hero-glow{position:absolute;top:-10%;right:-5%;width:550px;height:550px;background:radial-gradient(circle,rgba(198,241,53,.07) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:640px}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:var(--volt);color:var(--black);font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:22px}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--black);border-radius:50%;animation:pulseGreen 1.4s infinite}
+h1.ht{font-family:var(--F);font-size:clamp(3.5rem,9vw,6.5rem);font-weight:900;line-height:.9;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:18px}
+h1.ht .a{color:var(--volt)}
+h1.ht .o{-webkit-text-stroke:2px var(--white);color:transparent}
+.hero-slogan{font-size:1rem;color:var(--muted);line-height:1.7;max-width:440px;margin-bottom:14px}
+.hero-story{background:var(--volt-dim);border:1px solid rgba(198,241,53,.2);border-radius:12px;padding:15px 18px;margin:18px 0 28px;font-size:.85rem;color:#ccc;line-height:1.7}
+.hero-story strong{color:var(--volt)}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:36px;margin-top:44px;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap}
+.stat-n{font-family:var(--F);font-size:2.1rem;font-weight:900;color:var(--volt)}
+.stat-l{color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+.hero-bg-word{position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:var(--F);font-size:clamp(7rem,18vw,14rem);font-weight:900;text-transform:uppercase;color:rgba(198,241,53,.04);user-select:none;letter-spacing:-.04em;line-height:1;pointer-events:none}
 
-body{
-    background:#f8f9fa;
-    color:#222;
-}
+/* ── CATEGORIES STRIP ── */
+.cat-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;padding:48px 36px;background:var(--charcoal)}
+.cat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px 18px;text-align:center;transition:var(--t);text-decoration:none;display:block}
+.cat-card:hover{border-color:var(--volt);transform:translateY(-5px);background:var(--volt-dim)}
+.cat-emoji{font-size:2.3rem;margin-bottom:10px}
+.cat-name{font-family:var(--F);font-size:1.05rem;font-weight:700;text-transform:uppercase;color:var(--white)}
+.cat-cnt{color:var(--muted);font-size:.72rem;margin-top:2px}
 
-header{
-    background:#fff;
-    padding:20px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:sticky;
-    top:0;
-    z-index:100;
-    box-shadow:0 2px 15px rgba(0,0,0,.08);
-}
+/* ── FEATURED PRODUCTS ── */
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
 
-.logo{
-    font-size:2rem;
-    font-weight:900;
-    color:#71bb01;
-}
+/* ── PROMO BANNER ── */
+.promo-banner{background:var(--volt);padding:52px 36px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.promo-left h2{font-family:var(--F);font-size:clamp(2rem,5vw,3.2rem);font-weight:900;text-transform:uppercase;color:var(--black);line-height:1}
+.promo-left p{color:rgba(0,0,0,.6);font-size:.9rem;margin-top:8px}
+.promo-right{display:flex;gap:16px;flex-wrap:wrap}
+.promo-stat{text-align:center;background:rgba(0,0,0,.1);border-radius:12px;padding:16px 22px}
+.promo-stat-n{font-family:var(--F);font-size:2rem;font-weight:900;color:var(--black)}
+.promo-stat-l{font-size:.75rem;color:rgba(0,0,0,.6);text-transform:uppercase;letter-spacing:.06em}
 
-nav{
-    display:flex;
-    gap:30px;
-}
-
-nav a{
-    text-decoration:none;
-    color:#222;
-    font-weight:600;
-}
-
-nav a:hover{
-    color:#71bb01;
-}
-
-.hero{
-    min-height:90vh;
-    background:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
-    url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1600&q=80');
-    background-size:cover;
-    background-position:center;
-    display:flex;
-    align-items:center;
-    padding:0 8%;
-    color:white;
-}
-
-.hero-content{
-    max-width:650px;
-}
-
-.hero span{
-    background:#71bb01;
-    padding:8px 18px;
-    border-radius:30px;
-    font-weight:bold;
-}
-
-.hero h1{
-    font-size:4rem;
-    margin:25px 0;
-    line-height:1.1;
-}
-
-.hero p{
-    font-size:1.2rem;
-    margin-bottom:30px;
-}
-
-.btn{
-    display:inline-block;
-    padding:15px 35px;
-    background:#71bb01;
-    color:white;
-    text-decoration:none;
-    border-radius:50px;
-    font-weight:bold;
-}
-
-.section{
-    padding:90px 8%;
-}
-
-.section-title{
-    text-align:center;
-    font-size:2.5rem;
-    margin-bottom:50px;
-}
-
-.benefits{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
-
-.card h3{
-    margin:15px 0;
-}
-
-.categories{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-
-.category{
-    background:#71bb01;
-    color:white;
-    padding:60px 20px;
-    text-align:center;
-    border-radius:20px;
-    font-size:1.4rem;
-    font-weight:bold;
-}
-
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-
-.product{
-    background:white;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
-
-.product img{
-    width:100%;
-    height:250px;
-    object-fit:cover;
-}
-
-.product-info{
-    padding:20px;
-}
-
-.price{
-    color:#71bb01;
-    font-size:1.2rem;
-    font-weight:bold;
-    margin-top:10px;
-}
-
-.about{
-    background:white;
-    text-align:center;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:25px;
-    text-align:center;
-}
-
-.stat{
-    background:#71bb01;
-    color:white;
-    padding:40px;
-    border-radius:20px;
-}
-
-.stat h2{
-    font-size:3rem;
-}
-
-.reviews{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:25px;
-}
-
-.review{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-}
-
-.newsletter{
-    background:#71bb01;
-    color:white;
-    text-align:center;
-}
-
-.newsletter input{
-    padding:15px;
-    width:300px;
-    max-width:90%;
-    border:none;
-    border-radius:10px;
-    margin-top:20px;
-}
-
-.newsletter button{
-    padding:15px 25px;
-    border:none;
-    background:#222;
-    color:white;
-    border-radius:10px;
-    margin-left:10px;
-    cursor:pointer;
-}
-
-footer{
-    background:#111;
-    color:white;
-    padding:50px 8%;
-    text-align:center;
-}
-
+/* ── NEWSLETTER ── */
+.nl{background:var(--charcoal);padding:60px 36px;text-align:center}
+.nl h2{font-family:var(--F);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;text-transform:uppercase;margin-bottom:10px}
+.nl p{color:var(--muted);font-size:.9rem;margin-bottom:28px}
+.nl-form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap}
+.nl-input{flex:1;background:var(--mid);border:1px solid var(--border);color:var(--white);padding:13px 16px;border-radius:9px;font-size:.9rem;outline:none;transition:var(--t);min-width:180px}
+.nl-input:focus{border-color:var(--volt)}
+.nl-input::placeholder{color:var(--muted)}
+.nl-btn{background:var(--volt);color:var(--black);border:none;padding:13px 22px;border-radius:9px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;font-size:.85rem;cursor:pointer;transition:var(--t)}
+.nl-btn:hover{background:var(--volt-d)}
 </style>
 </head>
 <body>
+<div class="page">
 
-<header>
-    <div class="logo">SPORTÍN</div>
+<!-- PUSH NOTIFICATION -->
+<div id="pushOverlay">
+  <div class="push-box">
+    <div class="push-pill">🎁 Oferta de bienvenida</div>
+    <div class="push-bell">🔔</div>
+    <h2>¡Activa alertas<br><span style="color:var(--volt)">exclusivas!</span></h2>
+    <p>Sé el primero en conocer los drops limitados, descuentos flash y preventas VIP de <strong>Sportín</strong>.</p>
+    <button class="push-yes" onclick="acceptPush()">🔔 Activar notificaciones</button><br>
+    <button class="push-no" onclick="dismissPush()">Ahora no</button>
+  </div>
+</div>
 
-    <nav>
-        <a href="#">Inicio</a>
-        <a href="#">Tienda</a>
-        <a href="#">Colecciones</a>
-        <a href="#">Packs</a>
-        <a href="#">Contacto</a>
-    </nav>
-</header>
-
-<section class="hero">
-    <div class="hero-content">
-        <span>Nueva Colección 2026</span>
-        <h1>EQUIPA TU MEJOR VERSIÓN</h1>
-        <p>
-            Ropa deportiva diseñada para quienes entrenan
-            sin límites y buscan el máximo rendimiento.
-        </p>
-
-        <a href="#" class="btn">
-            Comprar Ahora
-        </a>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Nueva colección 2026</div>
+    <h1 class="ht">EQUIPA<br>TU MEJOR<br><span class="a">VERSIÓN</span></h1>
+    <p class="hero-slogan"><strong style="color:var(--white)">Sportín</strong> — Ropa deportiva de alto rendimiento hecha para atletas que no se detienen.</p>
+    <div class="hero-story">
+      <strong>Nuestra historia:</strong> Nacidos en Lima en 2020, Sportín surgió de la pasión por el deporte y la insatisfacción con prendas que no resistían el entrenamiento real. Hoy vestimos a más de <strong>15,000 atletas</strong> en todo el Perú con tecnología dry-fit, UV-protect y anti-odor.
     </div>
-</section>
-
-<section class="section">
-
-    <h2 class="section-title">
-        ¿Por qué elegir Sportín?
-    </h2>
-
-    <div class="benefits">
-
-        <div class="card">
-            🚚
-            <h3>Envío Rápido</h3>
-            <p>Entregas a todo el Perú.</p>
-        </div>
-
-        <div class="card">
-            🔒
-            <h3>Pago Seguro</h3>
-            <p>Protección garantizada.</p>
-        </div>
-
-        <div class="card">
-            ⭐
-            <h3>Calidad Premium</h3>
-            <p>Materiales de alto rendimiento.</p>
-        </div>
-
-        <div class="card">
-            🔄
-            <h3>Cambios Gratis</h3>
-            <p>Hasta 30 días.</p>
-        </div>
-
+    <div class="hero-ctas">
+      <a href="coleccion.html" class="btn-v">🛍️ Ver colección</a>
+      <a href="paquetes.html" class="btn-ghost">📦 Ver paquetes VIP</a>
     </div>
-
-</section>
-
-<section class="section">
-
-    <h2 class="section-title">
-        Categorías
-    </h2>
-
-    <div class="categories">
-
-        <div class="category">RUNNING</div>
-        <div class="category">GYM</div>
-        <div class="category">MUJER</div>
-        <div class="category">HOMBRE</div>
-
+    <div class="hero-stats">
+      <div><div class="stat-n">15K+</div><div class="stat-l">Atletas</div></div>
+      <div><div class="stat-n">98%</div><div class="stat-l">Satisfacción</div></div>
+      <div><div class="stat-n">48H</div><div class="stat-l">Despacho</div></div>
+      <div><div class="stat-n">30D</div><div class="stat-l">Devolución</div></div>
     </div>
+  </div>
+  <div class="hero-bg-word">SPORTÍN</div>
+</div>
 
-</section>
+<!-- MARQUEE -->
+<div class="marquee"><div class="mtrack" id="mtrack"></div></div>
 
-<section class="section">
+<!-- CATEGORIES STRIP -->
+<div class="cat-strip">
+  <a href="categorias.html" class="cat-card"><div class="cat-emoji">🏃</div><div class="cat-name">Running</div><div class="cat-cnt">12 productos</div></a>
+  <a href="categorias.html" class="cat-card"><div class="cat-emoji">🏋️</div><div class="cat-name">Gym</div><div class="cat-cnt">15 productos</div></a>
+  <a href="categorias.html" class="cat-card"><div class="cat-emoji">🧘</div><div class="cat-name">Mujer</div><div class="cat-cnt">18 productos</div></a>
+  <a href="categorias.html" class="cat-card"><div class="cat-emoji">💪</div><div class="cat-name">Hombre</div><div class="cat-cnt">20 productos</div></a>
+  <a href="categorias.html" class="cat-card"><div class="cat-emoji">🎒</div><div class="cat-name">Accesorios</div><div class="cat-cnt">9 productos</div></a>
+  <a href="coleccion.html" class="cat-card"><div class="cat-emoji">🏷️</div><div class="cat-name">Ofertas</div><div class="cat-cnt">8 productos</div></a>
+</div>
 
-    <h2 class="section-title">
-        Productos Destacados
-    </h2>
+<!-- FEATURED PRODUCTS -->
+<div class="section">
+  <div class="sec-header">
+    <div class="sec-tag">Colección 2026</div>
+    <h2 class="sec-title">PRODUCTOS <span class="a">ESTRELLA</span></h2>
+  </div>
+  <div class="prod-grid" id="featuredGrid"></div>
+  <div style="text-align:center;margin-top:36px"><a href="coleccion.html" class="btn-v">Ver toda la colección →</a></div>
+</div>
 
-    <div class="products">
+<!-- PROMO BANNER -->
+<div class="promo-banner">
+  <div class="promo-left">
+    <h2>PAQUETES VIP<br><span style="-webkit-text-stroke:2px var(--black);color:transparent">AHORRA HASTA</span><br>27% OFF</h2>
+    <p>Kits completos diseñados para tu disciplina favorita.</p>
+    <a href="paquetes.html" class="btn-v" style="margin-top:18px;background:var(--black);color:var(--volt)">Ver paquetes →</a>
+  </div>
+  <div class="promo-right">
+    <div class="promo-stat"><div class="promo-stat-n">3</div><div class="promo-stat-l">Paquetes disponibles</div></div>
+    <div class="promo-stat"><div class="promo-stat-n">27%</div><div class="promo-stat-l">Máximo ahorro</div></div>
+    <div class="promo-stat"><div class="promo-stat-n">48H</div><div class="promo-stat-l">Entrega express</div></div>
+  </div>
+</div>
 
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f" alt="">
-            <div class="product-info">
-                <h3>Leggings PowerFit</h3>
-                <div class="price">S/89.90</div>
-            </div>
-        </div>
+<!-- NEWSLETTER -->
+<div class="nl">
+  <div class="sec-tag">Comunidad Sportín</div>
+  <h2>SUSCRÍBETE Y GANA <span style="color:var(--volt)">15% OFF</span></h2>
+  <p>Descuento en tu primera compra para suscriptores.</p>
+  <div class="nl-form">
+    <input type="email" class="nl-input" placeholder="tu@email.com" id="nlEmail">
+    <button class="nl-btn" onclick="subscribeNl()">Suscribirme →</button>
+  </div>
+</div>
 
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab" alt="">
-            <div class="product-info">
-                <h3>Polo Sport Dry</h3>
-                <div class="price">S/59.90</div>
-            </div>
-        </div>
+</div><!-- /page -->
+<script src="shared.js"></script>
+<script src="layout.js"></script>
+<script>
+Layout.init('index.html');
 
-        <div class="product">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff" alt="">
-            <div class="product-info">
-                <h3>Zapatillas Runner</h3>
-                <div class="price">S/249.90</div>
-            </div>
-        </div>
+// MARQUEE
+const ITEMS=['ENVÍO GRATIS +S/100','NUEVA COLECCIÓN 2026','−30% EN HOODIES','PAGO SEGURO SSL','DEVOLUCIONES GRATIS','YAPE · VISA · PAYPAL'];
+const doubled=[...ITEMS,...ITEMS];
+document.getElementById('mtrack').innerHTML=doubled.map(i=>`<span class="mitem"><span class="mdot"></span>${i}</span>`).join('');
 
+// PUSH
+function acceptPush(){
+  dismissPush();
+  SPORTIN.toast('🔔','¡Notificaciones activadas!','Recibirás drops y descuentos exclusivos');
+}
+function dismissPush(){
+  const o=document.getElementById('pushOverlay');
+  o.style.opacity='0';o.style.transition='opacity .4s';
+  setTimeout(()=>o.style.display='none',400);
+}
+window.addEventListener('load',()=>setTimeout(()=>{
+  document.getElementById('pushOverlay').style.display='flex';
+},1200));
+
+// FEATURED PRODUCTS (first 6 products, varied)
+function getStockLabel(stock){
+  if(stock===0)return'<span class="stock-out">❌ Sin stock</span>';
+  if(stock<=5)return`<span class="stock-low">⚠️ Solo ${stock} uds</span>`;
+  return`<span class="stock-ok">✅ En stock (${stock})</span>`;
+}
+const featured=SPORTIN.PRODUCTS.slice(0,6);
+const grid=document.getElementById('featuredGrid');
+const qtys={};
+featured.forEach(p=>{
+  qtys[p.id]=1;
+  const stockPct=p.maxStock>0?p.stock/p.maxStock*100:0;
+  const stockColor=p.stock===0?'#e63946':p.stock<=5?'#f97316':'#22c55e';
+  const isOut=p.stock===0;
+  const card=document.createElement('div');
+  card.className='prod-card';
+  card.innerHTML=`
+    <div class="prod-img">
+      <div class="prod-img-grad"></div>
+      <div class="prod-emoji">${p.emoji}</div>
+      ${p.badge?`<span class="prod-badge ${p.btype}">${p.badge}</span>`:''}
+      <div class="stock-bar-abs"><div class="stock-bg"><div class="stock-fill" style="width:${stockPct}%;background:${stockColor}"></div></div></div>
     </div>
-
-</section>
-
-<section class="section about">
-
-    <h2 class="section-title">
-        Nuestra Historia
-    </h2>
-
-    <p>
-        Sportín nació para ofrecer ropa deportiva moderna,
-        cómoda y resistente para atletas de todos los niveles.
-    </p>
-
-</section>
-
-<section class="section">
-
-    <h2 class="section-title">
-        Números que nos respaldan
-    </h2>
-
-    <div class="stats">
-
-        <div class="stat">
-            <h2>15K+</h2>
-            Clientes
+    <div class="prod-info">
+      <div class="prod-cat">${p.cat}</div>
+      <div class="prod-name">${p.name}</div>
+      <div style="margin-bottom:6px"><span class="prod-stars">${'★'.repeat(Math.round(p.rating))}${'☆'.repeat(5-Math.round(p.rating))}</span><span class="prod-revs">(${p.rev})</span></div>
+      <div class="prod-stock-lbl">${getStockLabel(p.stock)}</div>
+      <div class="prod-footer">
+        <div><span class="prod-price">S/ ${p.price}</span>${p.oldP?`<span class="prod-old">S/ ${p.oldP}</span>`:''}</div>
+        <div class="add-row">
+          <div class="qty-wrap">
+            <button class="qb" id="qm${p.id}" onclick="chQty(${p.id},-1)" ${isOut?'disabled':''}>−</button>
+            <span class="qnum" id="qn${p.id}">1</span>
+            <button class="qb" id="qp${p.id}" onclick="chQty(${p.id},1)" ${isOut||p.stock<=1?'disabled':''}>+</button>
+          </div>
+          <button class="add-btn" onclick="addP(${p.id})" ${isOut?'disabled':''}>${isOut?'❌ Agotado':'🛒 Añadir'}</button>
         </div>
+      </div>
+    </div>`;
+  grid.appendChild(card);
+});
 
-        <div class="stat">
-            <h2>98%</h2>
-            Satisfacción
-        </div>
-
-        <div class="stat">
-            <h2>48h</h2>
-            Entrega
-        </div>
-
-        <div class="stat">
-            <h2>30</h2>
-            Días devolución
-        </div>
-
-    </div>
-
-</section>
-
-<section class="section">
-
-    <h2 class="section-title">
-        Opiniones
-    </h2>
-
-    <div class="reviews">
-
-        <div class="review">
-            ★★★★★
-            <p>Excelente calidad y comodidad.</p>
-        </div>
-
-        <div class="review">
-            ★★★★★
-            <p>La mejor compra deportiva que hice.</p>
-        </div>
-
-        <div class="review">
-            ★★★★★
-            <p>Entrega rápida y productos increíbles.</p>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="section newsletter">
-
-    <h2>
-        Recibe promociones exclusivas
-    </h2>
-
-    <input type="email" placeholder="Tu correo">
-
-    <button>
-        Suscribirme
-    </button>
-
-</section>
-
-<footer>
-
-    <h2>SPORTÍN</h2>
-
-    <p>
-        Ropa deportiva de alto rendimiento.
-    </p>
-
-</footer>
-
+function chQty(id,d){
+  const p=SPORTIN.PRODUCTS.find(x=>x.id===id);
+  qtys[id]=Math.max(1,Math.min(p.stock,qtys[id]+d));
+  document.getElementById('qn'+id).textContent=qtys[id];
+  document.getElementById('qp'+id).disabled=qtys[id]>=p.stock;
+  document.getElementById('qm'+id).disabled=qtys[id]<=1;
+}
+function addP(id){
+  SPORTIN.addToCart(id,qtys[id]||1);
+  SPORTIN.updateCartBadge();
+  Layout.refreshCartUI();
+  Layout.openCart();
+}
+function subscribeNl(){
+  const v=document.getElementById('nlEmail').value;
+  if(!v||!v.includes('@')){SPORTIN.toast('⚠️','Email inválido','');return;}
+  document.getElementById('nlEmail').value='';
+  SPORTIN.toast('🎉','¡Suscripción exitosa!','Tu 15% OFF llegará a tu correo');
+}
+</script>
 </body>
 </html>
-
