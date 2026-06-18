@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Sportín | Categorías</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.page-hero{background:linear-gradient(135deg,var(--charcoal) 0%,var(--black) 100%);padding:80px 36px 48px;text-align:center;border-bottom:1px solid var(--border)}
+.page-hero h1{font-family:var(--F);font-size:clamp(2.5rem,7vw,5rem);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:.92;margin-bottom:12px}
+
+.cats-hero-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px;padding:48px 36px;background:var(--charcoal)}
+.cat-big{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:40px 28px;text-align:center;cursor:pointer;transition:var(--t);position:relative;overflow:hidden}
+.cat-big::before{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--volt);transform:scaleX(0);transform-origin:left;transition:var(--t)}
+.cat-big:hover::before{transform:scaleX(1)}
+.cat-big:hover{border-color:rgba(198,241,53,.4);transform:translateY(-6px);background:rgba(198,241,53,.04)}
+.cat-big-emoji{font-size:3.5rem;margin-bottom:16px}
+.cat-big-name{font-family:var(--F);font-size:1.5rem;font-weight:900;text-transform:uppercase;margin-bottom:6px}
+.cat-big-desc{color:var(--muted);font-size:.82rem;line-height:1.5;margin-bottom:12px}
+.cat-big-cnt{background:var(--volt);color:var(--black);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:10px;display:inline-block}
+
+.cat-products-section{padding:52px 36px}
+.cat-products-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px}
+.cat-products-title{font-family:var(--F);font-size:1.8rem;font-weight:900;text-transform:uppercase}
+.cat-products-title span{color:var(--volt)}
+
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+
+.active-cat-bar{background:var(--volt-dim);border:1px solid rgba(198,241,53,.2);border-radius:12px;padding:14px 20px;margin-bottom:28px;display:flex;align-items:center;gap:10px;font-size:.88rem}
+.active-cat-bar strong{color:var(--volt)}
+</style>
+</head>
+<body>
+<div class="page">
+<div class="page-hero">
+  <div class="sec-tag">Explorar</div>
+  <h1>CATEGORÍAS <span style="color:var(--volt)">SPORTÍN</span></h1>
+  <p style="color:var(--muted);font-size:.95rem;max-width:440px;margin:0 auto">Encuentra exactamente lo que buscas por disciplina, género o accesorio.</p>
+</div>
+
+<!-- CATEGORY GRID -->
+<div class="cats-hero-grid">
+  <div class="cat-big" onclick="showCat('running','🏃','Running')">
+    <div class="cat-big-emoji">🏃</div>
+    <div class="cat-big-name">Running</div>
+    <div class="cat-big-desc">Camisetas dry-fit, shorts de compresión y calcetines técnicos para cada kilómetro.</div>
+    <span class="cat-big-cnt">4 productos</span>
+  </div>
+  <div class="cat-big" onclick="showCat('gym','🏋️','Gym & Fitness')">
+    <div class="cat-big-emoji">🏋️</div>
+    <div class="cat-big-name">Gym & Fitness</div>
+    <div class="cat-big-desc">Toda la ropa que necesitas para sacar el máximo en la sala de pesas.</div>
+    <span class="cat-big-cnt">5 productos</span>
+  </div>
+  <div class="cat-big" onclick="showCat('mujer','🧘','Mujer')">
+    <div class="cat-big-emoji">🧘</div>
+    <div class="cat-big-name">Mujer</div>
+    <div class="cat-big-desc">Leggings, sports bras y tops diseñados para el cuerpo femenino activo.</div>
+    <span class="cat-big-cnt">4 productos</span>
+  </div>
+  <div class="cat-big" onclick="showCat('hombre','💪','Hombre')">
+    <div class="cat-big-emoji">💪</div>
+    <div class="cat-big-name">Hombre</div>
+    <div class="cat-big-desc">Camisetas, shorts y hoodies técnicos para entrenar sin límites.</div>
+    <span class="cat-big-cnt">5 productos</span>
+  </div>
+  <div class="cat-big" onclick="showCat('accesorios','🎒','Accesorios')">
+    <div class="cat-big-emoji">🎒</div>
+    <div class="cat-big-name">Accesorios</div>
+    <div class="cat-big-desc">Bolsas, guantes, calcetines y todo lo que completa tu equipo.</div>
+    <span class="cat-big-cnt">3 productos</span>
+  </div>
+  <div class="cat-big" onclick="showCat('oferta','🏷️','Ofertas')">
+    <div class="cat-big-emoji">🏷️</div>
+    <div class="cat-big-name">Ofertas</div>
+    <div class="cat-big-desc">Los mejores descuentos del momento. Stock limitado, ¡aprovecha ahora!</div>
+    <span class="cat-big-cnt">4 productos</span>
+  </div>
+</div>
+
+<!-- PRODUCT RESULTS -->
+<div class="cat-products-section" id="catProductsSection" style="display:none">
+  <div class="active-cat-bar" id="activeCatBar"></div>
+  <div class="cat-products-header">
+    <div class="cat-products-title" id="catTitle">Categoría</div>
+    <button class="btn-outline-v" onclick="clearCat()">✕ Limpiar filtro</button>
+  </div>
+  <div class="prod-grid" id="catProdGrid"></div>
+</div>
+
+</div>
+<script src="shared.js"></script>
+<script src="layout.js"></script>
+<script>
+Layout.init('categorias.html');
+const qtys={};
+
+function getStockLabel(s){
+  if(s===0)return'<span class="stock-out">❌ Sin stock</span>';
+  if(s<=5)return`<span class="stock-low">⚠️ Solo ${s} uds</span>`;
+  return`<span class="stock-ok">✅ En stock (${s})</span>`;
+}
+
+function showCat(filter, emoji, name){
+  const list=SPORTIN.PRODUCTS.filter(p=>p.tags.includes(filter));
+  const sec=document.getElementById('catProductsSection');
+  const grid=document.getElementById('catProdGrid');
+  document.getElementById('catTitle').innerHTML=`${emoji} <span>${name}</span>`;
+  document.getElementById('activeCatBar').innerHTML=`${emoji} Mostrando categoría <strong>${name}</strong> — ${list.length} producto${list.length!==1?'s':''}`;
+  grid.innerHTML='';
+  list.forEach(p=>{
+    if(!qtys[p.id]) qtys[p.id]=1;
+    const sp=p.maxStock>0?p.stock/p.maxStock*100:0;
+    const sc=p.stock===0?'#e63946':p.stock<=5?'#f97316':'#22c55e';
+    const out=p.stock===0;
+    const card=document.createElement('div');
+    card.className='prod-card';
+    card.innerHTML=`
+      <div class="prod-img">
+        <div class="prod-img-grad"></div>
+        <div class="prod-emoji">${p.emoji}</div>
+        ${p.badge?`<span class="prod-badge ${p.btype}">${p.badge}</span>`:''}
+        <div class="stock-bar-abs"><div class="stock-bg"><div class="stock-fill" style="width:${sp}%;background:${sc}"></div></div></div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-cat">${p.cat}</div>
+        <div class="prod-name">${p.name}</div>
+        <div style="margin-bottom:6px"><span class="prod-stars">${'★'.repeat(Math.round(p.rating))}${'☆'.repeat(5-Math.round(p.rating))}</span><span class="prod-revs">(${p.rev})</span></div>
+        <div class="prod-stock-lbl">${getStockLabel(p.stock)}</div>
+        <div class="prod-footer">
+          <div><span class="prod-price">S/ ${p.price}</span>${p.oldP?`<span class="prod-old">S/ ${p.oldP}</span>`:''}</div>
+          <div class="add-row">
+            <div class="qty-wrap">
+              <button class="qb" id="qm${p.id}" onclick="chQty(${p.id},-1)" ${out?'disabled':''}>−</button>
+              <span class="qnum" id="qn${p.id}">${qtys[p.id]}</span>
+              <button class="qb" id="qp${p.id}" onclick="chQty(${p.id},1)" ${out||qtys[p.id]>=p.stock?'disabled':''}>+</button>
+            </div>
+            <button class="add-btn" onclick="addP(${p.id})" ${out?'disabled':''}>${out?'❌ Agotado':'🛒 Añadir'}</button>
+          </div>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+  sec.style.display='block';
+  sec.scrollIntoView({behavior:'smooth'});
+}
+
+function chQty(id,d){
+  const p=SPORTIN.PRODUCTS.find(x=>x.id===id);
+  qtys[id]=Math.max(1,Math.min(p.stock,qtys[id]+d));
+  document.getElementById('qn'+id).textContent=qtys[id];
+  document.getElementById('qp'+id).disabled=qtys[id]>=p.stock;
+  document.getElementById('qm'+id).disabled=qtys[id]<=1;
+}
+function addP(id){
+  SPORTIN.addToCart(id,qtys[id]||1);
+  SPORTIN.updateCartBadge();
+  Layout.refreshCartUI();
+  Layout.openCart();
+}
+function clearCat(){
+  document.getElementById('catProductsSection').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
