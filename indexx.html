@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sportín | Ropa Deportiva de Alto Rendimiento</title>
+<meta name="description" content="Sportín – Ropa deportiva de alto rendimiento. Envío rápido, pago seguro, devoluciones gratis.">
+<meta name="keywords" content="ropa deportiva, leggings, camisetas deportivas, Sportín, tienda deportiva Perú">
+<meta name="robots" content="index, follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black:#0a0a0a; --charcoal:#161616; --mid:#242424; --card:#1e1e1e;
+  --volt:#c6f135; --volt-d:#a8d020; --volt-dim:rgba(198,241,53,.12);
+  --white:#f0f0f0; --muted:#777; --red:#e63946; --green:#22c55e;
+  --blue:#3b82f6; --orange:#f97316;
+  --border:rgba(255,255,255,.08);
+  --F:'Barlow Condensed',Impact,sans-serif;
+  --B:'Inter',system-ui,sans-serif;
+  --r:14px; --t:all .28s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--B);background:var(--black);color:var(--white);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:var(--B)}
+img{display:block}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--mid);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--volt)}
+
+/* ── PUSH OVERLAY ── */
+#pushOverlay{position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;animation:fadeIn .4s}
+.push-box{background:var(--charcoal);border:1px solid var(--volt);border-radius:24px;padding:44px 36px;max-width:440px;width:92%;text-align:center;animation:slideUp .5s cubic-bezier(.4,0,.2,1)}
+.push-bell{width:72px;height:72px;background:var(--volt);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 20px;animation:bellShake 1.2s .6s}
+.push-box h2{font-family:var(--F);font-size:1.9rem;font-weight:900;text-transform:uppercase;margin-bottom:10px}
+.push-box p{color:var(--muted);font-size:.9rem;line-height:1.6;margin-bottom:28px}
+.push-discount{display:inline-block;background:var(--volt-dim);border:1px solid var(--volt);color:var(--volt);font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:16px}
+.push-yes{width:100%;background:var(--volt);color:var(--black);border:none;padding:15px;border-radius:10px;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;transition:var(--t)}
+.push-yes:hover{background:var(--volt-d);transform:translateY(-2px)}
+.push-no{background:none;border:none;color:var(--muted);font-size:.85rem;text-decoration:underline}
+
+/* ── PUSH TOAST SOUND VISUAL ── */
+#soundIndicator{position:fixed;top:80px;right:20px;z-index:9000;background:var(--volt);color:var(--black);padding:10px 18px;border-radius:12px;font-size:.8rem;font-weight:700;display:none;animation:slideInRight .4s;align-items:center;gap:8px}
+
+/* ── HEADER ── */
+header{position:fixed;top:0;width:100%;z-index:1000;height:68px;background:rgba(10,10,10,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 32px;gap:24px}
+.logo-wrap{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-icon{width:38px;height:38px;background:var(--volt);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:var(--black);font-family:var(--F)}
+.logo-text{font-family:var(--F);font-size:1.7rem;font-weight:900;text-transform:uppercase;letter-spacing:-.02em}
+.logo-text span{color:var(--volt)}
+nav{display:flex;gap:24px;margin:0 auto}
+nav a{color:var(--muted);font-size:.82rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:var(--t);white-space:nowrap}
+nav a:hover{color:var(--volt)}
+.search-bar{display:flex;align-items:center;background:var(--mid);border:1px solid var(--border);border-radius:10px;padding:0 14px;gap:8px;transition:var(--t);width:200px}
+.search-bar:focus-within{border-color:var(--volt);width:240px}
+.search-bar input{background:none;border:none;color:var(--white);font-size:.85rem;outline:none;width:100%;padding:9px 0}
+.search-bar input::placeholder{color:var(--muted)}
+.search-bar svg{color:var(--muted);flex-shrink:0;width:16px;height:16px}
+.hdr-icons{display:flex;gap:10px;flex-shrink:0}
+.hdr-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--white);width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:var(--t);position:relative}
+.hdr-btn:hover{background:var(--volt);color:var(--black);border-color:var(--volt)}
+.cart-badge{position:absolute;top:-7px;right:-7px;background:var(--volt);color:var(--black);font-size:.6rem;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+
+/* ── HERO MARCA ── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:80px 40px 60px;position:relative;overflow:hidden;background:linear-gradient(140deg,#0a0a0a 0%,#111 60%,#0a120a 100%)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(198,241,53,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(198,241,53,.04) 1px,transparent 1px);background-size:56px 56px}
+.hero-glow{position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(198,241,53,.08) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:640px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--volt);color:var(--black);font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:24px}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--black);border-radius:50%;animation:pulseGreen 1.5s infinite}
+h1.brand-title{font-family:var(--F);font-size:clamp(3.5rem,9vw,6.5rem);font-weight:900;line-height:.92;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:20px}
+h1.brand-title .accent{color:var(--volt)}
+h1.brand-title .outline{-webkit-text-stroke:2px var(--white);color:transparent}
+.slogan{font-size:1.1rem;color:var(--muted);line-height:1.7;max-width:460px;margin-bottom:12px}
+.slogan strong{color:var(--white)}
+.brand-story{background:var(--volt-dim);border:1px solid rgba(198,241,53,.2);border-radius:12px;padding:16px 20px;margin:20px 0 32px;font-size:.88rem;color:#ccc;line-height:1.7}
+.brand-story strong{color:var(--volt)}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn-v{background:var(--volt);color:var(--black);border:none;padding:14px 32px;border-radius:10px;font-weight:700;font-size:.88rem;text-transform:uppercase;letter-spacing:.08em;transition:var(--t);display:inline-flex;align-items:center;gap:8px}
+.btn-v:hover{background:var(--volt-d);transform:translateY(-3px);box-shadow:0 14px 40px rgba(198,241,53,.3)}
+.btn-ghost{background:transparent;color:var(--white);border:1px solid var(--border);padding:14px 32px;border-radius:10px;font-weight:600;font-size:.88rem;text-transform:uppercase;letter-spacing:.08em;transition:var(--t);display:inline-flex;align-items:center;gap:8px}
+.btn-ghost:hover{border-color:var(--volt);color:var(--volt)}
+.hero-right{position:absolute;right:40px;top:50%;transform:translateY(-50%);text-align:center}
+.big-logo{font-family:var(--F);font-size:clamp(6rem,14vw,11rem);font-weight:900;text-transform:uppercase;color:rgba(198,241,53,.06);line-height:1;user-select:none;animation:float 6s ease-in-out infinite}
+.hero-stats{display:flex;gap:40px;margin-top:48px;padding-top:32px;border-top:1px solid var(--border)}
+.stat-n{font-family:var(--F);font-size:2.2rem;font-weight:900;color:var(--volt)}
+.stat-l{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+
+/* ── MARQUEE ── */
+.marquee{background:var(--volt);overflow:hidden;padding:11px 0}
+.marquee-track{display:flex;gap:48px;animation:marqueeAnim 25s linear infinite;white-space:nowrap}
+.marquee-item{color:var(--black);font-family:var(--F);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;display:flex;align-items:center;gap:14px;flex-shrink:0}
+.m-dot{width:5px;height:5px;background:var(--black);border-radius:50%}
+
+/* ── SECTIONS ── */
+.section{padding:88px 40px}
+.section-alt{background:var(--charcoal)}
+.sec-header{text-align:center;margin-bottom:52px}
+.sec-tag{display:inline-block;color:var(--volt);font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+h2.sec-title{font-family:var(--F);font-size:clamp(2rem,5vw,3.2rem);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;line-height:1}
+h2.sec-title .a{color:var(--volt)}
+
+/* ── CATEGORIES ── */
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}
+.cat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:32px 20px;text-align:center;transition:var(--t);cursor:pointer}
+.cat-card:hover{border-color:var(--volt);transform:translateY(-5px);background:var(--volt-dim)}
+.cat-emoji{font-size:2.4rem;margin-bottom:12px}
+.cat-name{font-family:var(--F);font-size:1.1rem;font-weight:700;text-transform:uppercase;color:var(--white)}
+.cat-cnt{color:var(--muted);font-size:.75rem;margin-top:3px}
+
+/* ── PRODUCTS ── */
+.filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:40px}
+.flt{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--muted);padding:7px 18px;border-radius:20px;font-size:.82rem;font-weight:500;transition:var(--t)}
+.flt:hover,.flt.on{background:var(--volt);color:var(--black);border-color:var(--volt);font-weight:700}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:22px}
+.prod-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:var(--t);position:relative}
+.prod-card:hover{transform:translateY(-7px);border-color:rgba(198,241,53,.4);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.prod-img{height:240px;background:var(--mid);display:flex;align-items:center;justify-content:center;font-size:5.5rem;position:relative;overflow:hidden}
+.prod-img-grad{position:absolute;inset:0;background:linear-gradient(135deg,var(--mid) 0%,#1a1a1a 100%)}
+.prod-emoji-wrap{position:relative;z-index:1}
+.prod-badge{position:absolute;top:10px;left:10px;z-index:2;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:6px}
+.badge-new{background:var(--volt);color:var(--black)}
+.badge-sale{background:var(--red);color:#fff}
+.badge-hot{background:var(--orange);color:#fff}
+.badge-pack{background:var(--blue);color:#fff}
+.prod-wish{position:absolute;top:10px;right:10px;z-index:2;background:rgba(0,0,0,.5);border:none;color:#fff;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:var(--t)}
+.prod-wish:hover,.prod-wish.on{background:var(--red);color:#fff}
+.stock-bar-wrap{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:0 12px 10px}
+.stock-bar-bg{height:3px;background:rgba(255,255,255,.15);border-radius:2px;overflow:hidden}
+.stock-bar-fill{height:100%;border-radius:2px;transition:width .6s}
+.prod-info{padding:18px}
+.prod-cat{color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.prod-name{font-weight:600;font-size:.97rem;margin-bottom:6px;line-height:1.3}
+.prod-rating{display:flex;align-items:center;gap:5px;margin-bottom:10px}
+.stars{color:var(--volt);font-size:.82rem}
+.rev-cnt{color:var(--muted);font-size:.75rem}
+.prod-sizes{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.sz{border:1px solid var(--border);padding:2px 7px;border-radius:4px;font-size:.68rem;color:var(--muted);cursor:pointer;transition:var(--t)}
+.sz:hover,.sz.active{border-color:var(--volt);color:var(--volt)}
+.prod-footer{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.prod-price{font-family:var(--F);font-size:1.35rem;font-weight:700;color:var(--volt)}
+.prod-old{color:var(--muted);text-decoration:line-through;font-size:.85rem;margin-left:5px}
+.prod-stock-txt{font-size:.72rem;margin-bottom:8px}
+.stock-ok{color:var(--green)}
+.stock-low{color:var(--orange)}
+.stock-out{color:var(--red)}
+
+/* ── QUANTITY & ADD ── */
+.add-row{display:flex;align-items:center;gap:8px}
+.qty-wrap{display:flex;align-items:center;background:var(--mid);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.qb{background:none;border:none;color:var(--white);width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;transition:var(--t)}
+.qb:hover:not(:disabled){background:var(--volt);color:var(--black)}
+.qb:disabled{color:var(--muted);cursor:not-allowed}
+.qnum{min-width:28px;text-align:center;font-size:.88rem;font-weight:600}
+.add-btn{background:var(--volt);color:var(--black);border:none;padding:8px 14px;border-radius:8px;font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;transition:var(--t);display:flex;align-items:center;gap:5px;white-space:nowrap}
+.add-btn:hover:not(:disabled){background:var(--volt-d);transform:scale(1.04)}
+.add-btn:disabled{background:var(--mid);color:var(--muted);cursor:not-allowed}
+
+/* ── TRENDING PACKAGES ── */
+.packs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.pack-card{background:var(--card);border:2px solid var(--volt);border-radius:var(--r);padding:28px;position:relative;overflow:hidden;transition:var(--t)}
+.pack-card:hover{transform:translateY(-5px);box-shadow:0 20px 60px rgba(198,241,53,.15)}
+.pack-ribbon{position:absolute;top:16px;right:-28px;background:var(--volt);color:var(--black);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:4px 36px;transform:rotate(45deg)}
+.pack-emojis{font-size:2.5rem;margin-bottom:12px}
+.pack-name{font-family:var(--F);font-size:1.5rem;font-weight:900;text-transform:uppercase;margin-bottom:6px}
+.pack-desc{color:var(--muted);font-size:.85rem;line-height:1.6;margin-bottom:16px}
+.pack-items{display:flex;flex-direction:column;gap:4px;margin-bottom:16px}
+.pack-item{color:#ccc;font-size:.82rem;display:flex;align-items:center;gap:6px}
+.pack-item::before{content:'✓';color:var(--volt);font-weight:700}
+.pack-footer{display:flex;align-items:center;justify-content:space-between}
+.pack-price{font-family:var(--F);font-size:1.8rem;font-weight:900;color:var(--volt)}
+.pack-save{background:rgba(198,241,53,.15);border:1px solid var(--volt);color:var(--volt);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:12px}
+
+/* ── CART SIDEBAR ── */
+#cartOverlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);display:none}
+#cartOverlay.open{display:flex;justify-content:flex-end}
+.cart-panel{width:430px;max-width:96vw;height:100%;background:var(--charcoal);display:flex;flex-direction:column;border-left:1px solid var(--border);animation:slideInRight .38s cubic-bezier(.4,0,.2,1)}
+.cart-hdr{padding:22px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.cart-ttl{font-family:var(--F);font-size:1.4rem;font-weight:900;text-transform:uppercase}
+.cart-x{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--white);width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:var(--t)}
+.cart-x:hover{background:var(--red);border-color:var(--red)}
+.cart-body{flex:1;overflow-y:auto;padding:20px}
+.cart-empty-msg{text-align:center;color:var(--muted);padding:60px 0}
+.ci{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.ci-img{width:64px;height:64px;background:var(--mid);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;flex-shrink:0}
+.ci-info{flex:1}
+.ci-name{font-weight:600;font-size:.88rem;margin-bottom:2px}
+.ci-meta{color:var(--muted);font-size:.75rem;margin-bottom:8px}
+.ci-controls{display:flex;align-items:center;gap:8px}
+.ci-qb{background:var(--mid);border:1px solid var(--border);color:var(--white);width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;transition:var(--t)}
+.ci-qb:hover{background:var(--volt);color:var(--black);border-color:var(--volt)}
+.ci-q{min-width:22px;text-align:center;font-size:.85rem;font-weight:600}
+.ci-del{margin-left:auto;background:none;border:none;color:var(--muted);font-size:.9rem;transition:var(--t)}
+.ci-del:hover{color:var(--red)}
+.ci-price{font-family:var(--F);font-size:1.1rem;font-weight:700;color:var(--volt);align-self:center;flex-shrink:0}
+.cart-foot{padding:20px 24px;border-top:1px solid var(--border)}
+.cart-ssl{display:flex;align-items:center;gap:7px;color:var(--muted);font-size:.77rem;margin-bottom:12px}
+.cart-ssl span{color:var(--green);font-size:1rem}
+.cart-subtotal{display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem;margin-bottom:6px}
+.cart-total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.cart-total-label{font-weight:600;font-size:1rem}
+.cart-total-val{font-family:var(--F);font-size:1.6rem;font-weight:900;color:var(--volt)}
+.checkout-btn{width:100%;background:var(--volt);color:var(--black);border:none;padding:17px;border-radius:10px;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.08em;transition:var(--t);display:flex;align-items:center;justify-content:center;gap:9px}
+.checkout-btn:hover{background:var(--volt-d);transform:translateY(-2px);box-shadow:0 12px 40px rgba(198,241,53,.3)}
+.pay-methods{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.pm{background:var(--mid);border:1px solid var(--border);padding:5px 11px;border-radius:7px;font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:4px}
+
+/* ── PAYMENT SECTION ── */
+.payment-section{background:var(--charcoal)}
+.pay-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;max-width:900px;margin:0 auto}
+.pay-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px 20px;text-align:center;transition:var(--t)}
+.pay-card:hover{border-color:var(--volt);transform:translateY(-4px)}
+.pay-icon-big{font-size:2.2rem;margin-bottom:10px}
+.pay-name{font-weight:600;font-size:.88rem;margin-bottom:4px}
+.pay-desc{color:var(--muted);font-size:.72rem}
+.pay-secure-note{text-align:center;margin-top:32px;color:var(--muted);font-size:.85rem;display:flex;align-items:center;justify-content:center;gap:8px}
+.pay-secure-note span{color:var(--green)}
+
+/* ── REVIEWS ── */
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.rv-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:var(--t)}
+.rv-card:hover{border-color:rgba(198,241,53,.25);transform:translateY(-4px)}
+.rv-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.rv-avatar{width:44px;height:44px;border-radius:50%;background:var(--volt);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:var(--black);flex-shrink:0}
+.rv-name{font-weight:600;font-size:.9rem}
+.rv-date{color:var(--muted);font-size:.72rem;margin-top:1px}
+.rv-stars{color:var(--volt);font-size:.88rem;margin-bottom:8px}
+.rv-product{color:var(--volt);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.rv-text{color:#bbb;font-size:.85rem;line-height:1.6}
+.rv-verified{display:inline-flex;align-items:center;gap:4px;color:var(--green);font-size:.7rem;margin-top:10px}
+.rating-summary{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px;margin-bottom:32px;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.rating-big{text-align:center}
+.rating-num{font-family:var(--F);font-size:4rem;font-weight:900;color:var(--volt);line-height:1}
+.rating-stars-big{color:var(--volt);font-size:1.4rem}
+.rating-total{color:var(--muted);font-size:.8rem;margin-top:4px}
+.rating-bars{flex:1;min-width:200px;display:flex;flex-direction:column;gap:7px}
+.rb-row{display:flex;align-items:center;gap:10px;font-size:.78rem}
+.rb-label{color:var(--muted);min-width:32px}
+.rb-bg{flex:1;height:6px;background:var(--mid);border-radius:3px;overflow:hidden}
+.rb-fill{height:100%;background:var(--volt);border-radius:3px}
+.rb-pct{color:var(--muted);min-width:28px;text-align:right}
+
+/* ── RETURNS POLICY ── */
+.policy-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.pol-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:var(--t)}
+.pol-card:hover{border-color:rgba(198,241,53,.25);transform:translateY(-4px)}
+.pol-icon{font-size:2rem;margin-bottom:14px}
+.pol-title{font-family:var(--F);font-size:1.1rem;font-weight:700;text-transform:uppercase;margin-bottom:8px;color:var(--volt)}
+.pol-text{color:#bbb;font-size:.85rem;line-height:1.65}
+
+/* ── CHATBOT ── */
+#chatToggle{position:fixed;bottom:28px;right:28px;z-index:1500;width:58px;height:58px;background:var(--volt);border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 6px 32px rgba(198,241,53,.45);transition:var(--t);animation:pulseGlow 2.5s infinite}
+#chatToggle:hover{transform:scale(1.1)}
+.chat-unread{position:absolute;top:-4px;right:-4px;background:var(--red);color:#fff;font-size:.6rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+#chatWin{position:fixed;bottom:96px;right:28px;z-index:1500;width:360px;max-width:94vw;background:var(--charcoal);border:1px solid var(--border);border-radius:20px;display:none;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.7);max-height:500px}
+#chatWin.open{display:flex;animation:slideUp .38s cubic-bezier(.4,0,.2,1)}
+.chat-hdr{background:var(--volt);padding:14px 18px;display:flex;align-items:center;gap:11px;color:var(--black)}
+.bot-av{width:36px;height:36px;background:var(--black);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.bot-n{font-weight:700;font-size:.92rem}
+.bot-s{font-size:.7rem;display:flex;align-items:center;gap:3px}
+.sdot{width:6px;height:6px;background:var(--green);border-radius:50%}
+.chat-xbtn{margin-left:auto;background:none;border:none;color:var(--black);font-size:1.2rem;cursor:pointer}
+.chat-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;min-height:220px;max-height:280px}
+.cmsg{max-width:86%}
+.cmsg.bot{align-self:flex-start}
+.cmsg.user{align-self:flex-end}
+.cbubble{padding:9px 13px;border-radius:13px;font-size:.845rem;line-height:1.5}
+.cmsg.bot .cbubble{background:var(--mid);color:var(--white);border-bottom-left-radius:3px}
+.cmsg.user .cbubble{background:var(--volt);color:var(--black);font-weight:500;border-bottom-right-radius:3px}
+.ctime{font-size:.67rem;color:var(--muted);margin-top:3px}
+.typing{display:flex;gap:4px;padding:9px 13px;background:var(--mid);border-radius:13px;border-bottom-left-radius:3px;width:fit-content}
+.td{width:6px;height:6px;background:var(--muted);border-radius:50%;animation:tdBounce 1.2s infinite}
+.td:nth-child(2){animation-delay:.2s}
+.td:nth-child(3){animation-delay:.4s}
+.qicks{padding:8px 14px;display:flex;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.qick{background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--muted);padding:4px 9px;border-radius:10px;font-size:.72rem;cursor:pointer;transition:var(--t)}
+.qick:hover{border-color:var(--volt);color:var(--volt)}
+.chat-inp-area{padding:10px 14px;display:flex;gap:8px;border-top:1px solid var(--border)}
+.chat-inp{flex:1;background:var(--mid);border:1px solid var(--border);color:var(--white);padding:9px 13px;border-radius:9px;font-size:.84rem;outline:none;transition:var(--t)}
+.chat-inp:focus{border-color:var(--volt)}
+.chat-inp::placeholder{color:var(--muted)}
+.chat-send{background:var(--volt);border:none;color:var(--black);width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;transition:var(--t)}
+.chat-send:hover{background:var(--volt-d)}
+
+/* ── DASHBOARD ── */
+.dash-kpis{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px;margin-bottom:40px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px 20px;transition:var(--t)}
+.kpi:hover{border-color:var(--volt)}
+.kpi-l{color:var(--muted);font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.kpi-v{font-family:var(--F);font-size:2rem;font-weight:900;line-height:1;color:var(--volt)}
+.kpi-ch{font-size:.75rem;margin-top:7px}
+.kpi-up{color:var(--green)}
+.kpi-dn{color:var(--red)}
+.dash-grid{display:grid;grid-template-columns:2fr 1fr;gap:24px;margin-bottom:24px}
+.chart-box{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:28px}
+.chart-ttl{font-family:var(--F);font-size:1.15rem;font-weight:700;text-transform:uppercase;margin-bottom:22px;display:flex;align-items:center;justify-content:space-between}
+.live-tag{background:var(--volt);color:var(--black);font-size:.65rem;font-weight:700;padding:2px 9px;border-radius:10px;display:flex;align-items:center;gap:4px}
+.live-dot{width:5px;height:5px;background:var(--black);border-radius:50%;animation:pulseGreen 1.2s infinite}
+.bar-chart{display:flex;align-items:flex-end;gap:10px;height:180px}
+.bc{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.bar{width:100%;background:var(--volt);border-radius:5px 5px 0 0;transition:height .9s cubic-bezier(.4,0,.2,1);position:relative;cursor:pointer;min-height:3px}
+.bar:hover{background:var(--volt-d)}
+.btt{position:absolute;top:-32px;left:50%;transform:translateX(-50%);background:var(--volt);color:var(--black);font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:4px;white-space:nowrap;opacity:0;transition:var(--t);pointer-events:none}
+.bar:hover .btt{opacity:1}
+.bl{color:var(--muted);font-size:.68rem;text-align:center}
+.top-list{list-style:none;display:flex;flex-direction:column;gap:0}
+.top-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border)}
+.top-rank{font-family:var(--F);font-size:1.1rem;font-weight:900;color:var(--volt);min-width:26px}
+.top-name{flex:1;font-size:.85rem;font-weight:500}
+.top-bar{width:70px;height:3px;background:var(--mid);border-radius:2px;overflow:hidden}
+.top-fill{height:100%;background:var(--volt);border-radius:2px}
+.top-n{color:var(--muted);font-size:.75rem}
+
+/* ── NEWSLETTER ── */
+.nl-section{background:var(--volt);padding:72px 40px;text-align:center}
+.nl-section h2{color:var(--black);margin-bottom:10px}
+.nl-section p{color:rgba(0,0,0,.6);font-size:1rem;margin-bottom:32px}
+.nl-form{display:flex;gap:10px;max-width:460px;margin:0 auto;flex-wrap:wrap}
+.nl-input{flex:1;background:rgba(0,0,0,.15);border:2px solid rgba(0,0,0,.2);color:var(--black);padding:14px 18px;border-radius:9px;font-size:.92rem;outline:none;min-width:190px}
+.nl-input::placeholder{color:rgba(0,0,0,.4)}
+.nl-input:focus{border-color:var(--black)}
+.nl-btn{background:var(--black);color:var(--volt);border:none;padding:14px 26px;border-radius:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:.88rem;transition:var(--t)}
+.nl-btn:hover{background:var(--charcoal)}
+
+/* ── FOOTER ── */
+footer{background:var(--charcoal);border-top:1px solid var(--border);padding:60px 40px 28px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.ft-brand .logo-text{font-size:2rem;display:block;margin-bottom:14px}
+.ft-desc{color:var(--muted);font-size:.84rem;line-height:1.7;max-width:280px;margin-bottom:20px}
+.ft-socials{display:flex;gap:10px}
+.soc-btn{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;text-decoration:none;transition:var(--t);border:1px solid var(--border);background:rgba(255,255,255,.04)}
+.soc-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
+.soc-tiktok:hover{background:#010101;border-color:#010101}
+.soc-ig:hover{background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);border-color:#e6683c}
+.soc-wsp:hover{background:#25D366;border-color:#25D366;color:#fff}
+.ft-col h4{font-family:var(--F);font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:18px;color:var(--volt)}
+.ft-links{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ft-links a{color:var(--muted);font-size:.84rem;transition:var(--t)}
+.ft-links a:hover{color:var(--volt)}
+.ft-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.ft-copy{color:var(--muted);font-size:.77rem}
+.trust-row{display:flex;gap:10px;flex-wrap:wrap}
+.trust{background:var(--mid);border:1px solid var(--border);padding:4px 11px;border-radius:6px;font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+
+/* ── MODALS ── */
+#checkoutModal{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center}
+#checkoutModal.open{display:flex;animation:fadeIn .3s}
+.modal-box{background:var(--charcoal);border:1px solid var(--border);border-radius:20px;padding:40px;max-width:520px;width:94%;max-height:90vh;overflow-y:auto;animation:slideUp .4s cubic-bezier(.4,0,.2,1)}
+.modal-box h3{font-family:var(--F);font-size:1.6rem;font-weight:900;text-transform:uppercase;margin-bottom:24px}
+.modal-steps{display:flex;gap:0;margin-bottom:28px}
+.mstep{flex:1;text-align:center;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;padding-bottom:8px;color:var(--muted);border-bottom:2px solid var(--border);cursor:pointer;transition:var(--t)}
+.mstep.on{color:var(--volt);border-color:var(--volt)}
+.mstep.done{color:var(--green);border-color:var(--green)}
+.mform{display:none}
+.mform.on{display:block}
+.fg{margin-bottom:16px}
+.fg label{display:block;color:var(--muted);font-size:.78rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.fg input,.fg select{width:100%;background:var(--mid);border:1px solid var(--border);color:var(--white);padding:11px 14px;border-radius:9px;font-size:.9rem;outline:none;transition:var(--t);font-family:var(--B)}
+.fg input:focus,.fg select:focus{border-color:var(--volt)}
+.fg select option{background:var(--charcoal)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.modal-nav{display:flex;gap:10px;margin-top:20px}
+.btn-modal-next{flex:1;background:var(--volt);color:var(--black);border:none;padding:13px;border-radius:9px;font-weight:700;font-size:.9rem;text-transform:uppercase;letter-spacing:.06em;transition:var(--t)}
+.btn-modal-next:hover{background:var(--volt-d)}
+.btn-modal-back{background:var(--mid);color:var(--white);border:none;padding:13px 20px;border-radius:9px;font-weight:600;font-size:.9rem;transition:var(--t)}
+.btn-modal-back:hover{background:var(--charcoal)}
+.pay-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
+.pay-opt{background:var(--mid);border:2px solid var(--border);border-radius:10px;padding:14px 10px;text-align:center;cursor:pointer;transition:var(--t);font-size:.78rem;font-weight:600}
+.pay-opt:hover,.pay-opt.sel{border-color:var(--volt);background:var(--volt-dim);color:var(--volt)}
+.pay-opt-icon{font-size:1.6rem;margin-bottom:5px}
+.order-summary{background:var(--mid);border-radius:10px;padding:16px;margin-bottom:20px}
+.os-row{display:flex;justify-content:space-between;font-size:.85rem;padding:5px 0}
+.os-total{display:flex;justify-content:space-between;font-weight:700;padding-top:10px;border-top:1px solid var(--border);margin-top:6px}
+.os-total-v{color:var(--volt);font-family:var(--F);font-size:1.2rem}
+
+/* ── SUCCESS MODAL ── */
+#successModal{position:fixed;inset:0;z-index:4000;background:rgba(0,0,0,.9);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center}
+#successModal.open{display:flex;animation:fadeIn .3s}
+.success-box{background:var(--charcoal);border:1px solid var(--green);border-radius:24px;padding:44px;max-width:480px;width:94%;text-align:center;animation:slideUp .5s cubic-bezier(.4,0,.2,1)}
+.success-icon{width:80px;height:80px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2.4rem;margin:0 auto 24px;animation:scaleIn .5s .2s both}
+.success-box h3{font-family:var(--F);font-size:2rem;font-weight:900;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.success-box p{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:20px}
+.tracking-code{background:var(--mid);border:2px dashed var(--volt);border-radius:12px;padding:16px;margin:20px 0;font-family:monospace;font-size:1.1rem;font-weight:700;color:var(--volt);letter-spacing:.1em}
+.tracking-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+
+/* ── SEARCH RESULTS ── */
+#searchResults{position:fixed;top:68px;left:50%;transform:translateX(-50%);z-index:900;background:var(--charcoal);border:1px solid var(--border);border-radius:14px;width:360px;max-width:94vw;box-shadow:0 20px 60px rgba(0,0,0,.6);display:none;max-height:360px;overflow-y:auto;padding:10px}
+.sr-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:10px;cursor:pointer;transition:var(--t)}
+.sr-item:hover{background:var(--mid)}
+.sr-emoji{font-size:1.6rem;flex-shrink:0}
+.sr-info{flex:1}
+.sr-name{font-size:.9rem;font-weight:600}
+.sr-cat{color:var(--muted);font-size:.75rem}
+.sr-price{color:var(--volt);font-family:var(--F);font-size:1rem;font-weight:700}
+.sr-none{color:var(--muted);font-size:.85rem;text-align:center;padding:20px}
+
+/* ── TOAST ── */
+#toastC{position:fixed;bottom:96px;left:28px;z-index:5000;display:flex;flex-direction:column;gap:8px}
+.toast{background:var(--charcoal);border:1px solid var(--volt);border-radius:12px;padding:12px 18px;display:flex;align-items:center;gap:10px;max-width:300px;animation:slideInLeft .38s cubic-bezier(.4,0,.2,1);box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.t-icon{font-size:1.2rem;flex-shrink:0}
+.t-body{font-size:.82rem;font-weight:500}
+.t-sub{color:var(--muted);font-size:.73rem}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(28px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes slideInRight{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@keyframes slideInLeft{from{transform:translateX(-50px);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes marqueeAnim{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+@keyframes pulseGreen{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.6}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 6px 32px rgba(198,241,53,.4)}50%{box-shadow:0 6px 48px rgba(198,241,53,.7)}}
+@keyframes bellShake{0%,100%{transform:rotate(0)}20%{transform:rotate(-18deg)}40%{transform:rotate(18deg)}60%{transform:rotate(-12deg)}80%{transform:rotate(12deg)}}
+@keyframes tdBounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-8px)}}
+@keyframes scaleIn{from{transform:scale(0)}to{transform:scale(1)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{display:none}
+  .search-bar{width:150px}
+  header{padding:0 18px;gap:12px}
+  .section{padding:60px 20px}
+  .hero-right{display:none}
+  #hero{padding:85px 22px 55px}
+  .ft-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .dash-grid{grid-template-columns:1fr}
+  .fg-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ PUSH OVERLAY ═══ -->
+<div id="pushOverlay">
+  <div class="push-box">
+    <div class="push-discount">🎁 Oferta de bienvenida</div>
+    <div class="push-bell">🔔</div>
+    <h2>¡Activa alertas<br>exclusivas!</h2>
+    <p>Sé el primero en conocer los <strong>drops limitados</strong>, descuentos flash y preventas VIP de <strong>Sportín</strong>. Promesa: cero spam.</p>
+    <button class="push-yes" onclick="acceptPush()">🔔 Activar notificaciones — Gratis</button>
+    <button class="push-no" onclick="dismissPush()">Ahora no</button>
+  </div>
+</div>
+
+<!-- Sound indicator visual -->
+<div id="soundIndicator">🔊 ¡Notificación activada!</div>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="logo-wrap">
+    <div class="logo-icon">S</div>
+    <span class="logo-text">SPORT<span>ÍN</span></span>
+  </div>
+  <nav>
+    <a href="#hero">Inicio</a>
+    <a href="#products">Colección</a>
+    <a href="#packs">Paquetes</a>
+    <a href="#categories">Categorías</a>
+    <a href="#reviews">Reseñas</a>
+    <a href="#dashboard">Dashboard</a>
+  </nav>
+  <div class="search-bar">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" placeholder="Buscar producto..." id="searchInput" oninput="liveSearch(this.value)" onfocus="showSearch()" onblur="hideSearch()">
+  </div>
+  <div id="searchResults"></div>
+  <div class="hdr-icons">
+    <button class="hdr-btn" title="Favoritos">🤍</button>
+    <button class="hdr-btn" title="Mi cuenta">👤</button>
+    <button class="hdr-btn" onclick="openCart()" title="Carrito">
+      🛒<span class="cart-badge" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- ═══ HERO — PRESENTACIÓN DE MARCA ═══ -->
+<section id="hero" class="section" style="padding-top:0;min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:linear-gradient(140deg,#0a0a0a 0%,#0f0f0f 60%,#060d06 100%)">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Nueva colección 2026</div>
+    <h1 class="brand-title">
+      EQUIPA<br>
+      TU MEJOR<br>
+      <span class="accent">VERSIÓN</span>
+    </h1>
+    <p class="slogan"><strong>Sportín</strong> — Ropa deportiva de alto rendimiento<br>hecha para atletas que no se detienen.</p>
+    <div class="brand-story">
+      <strong>Nuestra historia:</strong> Nacidos en Lima en 2020, Sportín surgió de la pasión por el deporte y la insatisfacción con prendas que prometían calidad pero no resistían el entrenamiento real. Hoy vestimos a más de <strong>15,000 atletas</strong> en todo el Perú con tecnología dry-fit, UV-protect y anti-odor. Calidad probada en cancha, sala de pesas y carretera.
+    </div>
+    <div class="hero-ctas">
+      <a href="#products" class="btn-v">🛍️ Ver colección</a>
+      <a href="#packs" class="btn-ghost">📦 Ver paquetes</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-n">15K+</div><div class="stat-l">Atletas</div></div>
+      <div><div class="stat-n">98%</div><div class="stat-l">Satisfacción</div></div>
+      <div><div class="stat-n">48H</div><div class="stat-l">Despacho</div></div>
+      <div><div class="stat-n">30D</div><div class="stat-l">Devolución</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="big-logo">SPORTÍN</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track" id="mtrack">
+    <span class="marquee-item"><span class="m-dot"></span>ENVÍO GRATIS +S/100</span>
+    <span class="marquee-item"><span class="m-dot"></span>NUEVA COLECCIÓN RUNNING 2026</span>
+    <span class="marquee-item"><span class="m-dot"></span>-30% EN HOODIES</span>
+    <span class="marquee-item"><span class="m-dot"></span>PAGO SEGURO SSL 256 BITS</span>
+    <span class="marquee-item"><span class="m-dot"></span>DEVOLUCIONES GRATIS 30 DÍAS</span>
+    <span class="marquee-item"><span class="m-dot"></span>+500 PRODUCTOS</span>
+    <span class="marquee-item"><span class="m-dot"></span>YAPE · TARJETA · PAYPAL</span>
+    <span class="marquee-item"><span class="m-dot"></span>ENVÍO GRATIS +S/100</span>
+    <span class="marquee-item"><span class="m-dot"></span>NUEVA COLECCIÓN RUNNING 2026</span>
+    <span class="marquee-item"><span class="m-dot"></span>-30% EN HOODIES</span>
+    <span class="marquee-item"><span class="m-dot"></span>PAGO SEGURO SSL 256 BITS</span>
+    <span class="marquee-item"><span class="m-dot"></span>DEVOLUCIONES GRATIS 30 DÍAS</span>
+    <span class="marquee-item"><span class="m-dot"></span>+500 PRODUCTOS</span>
+    <span class="marquee-item"><span class="m-dot"></span>YAPE · TARJETA · PAYPAL</span>
+  </div>
+</div>
+
+<!-- ═══ CATEGORIES ═══ -->
+<section id="categories" class="section section-alt">
+  <div class="sec-header">
+    <div class="sec-tag">Explorar</div>
+    <h2 class="sec-title">COMPRA POR <span class="a">CATEGORÍA</span></h2>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card" onclick="setFilterAndScroll('running')"><div class="cat-emoji">🏃</div><div class="cat-name">Running</div><div class="cat-cnt">12 productos</div></div>
+    <div class="cat-card" onclick="setFilterAndScroll('gym')"><div class="cat-emoji">🏋️</div><div class="cat-name">Gym & Fitness</div><div class="cat-cnt">15 productos</div></div>
+    <div class="cat-card" onclick="setFilterAndScroll('mujer')"><div class="cat-emoji">🧘</div><div class="cat-name">Mujer</div><div class="cat-cnt">18 productos</div></div>
+    <div class="cat-card" onclick="setFilterAndScroll('hombre')"><div class="cat-emoji">💪</div><div class="cat-name">Hombre</div><div class="cat-cnt">20 productos</div></div>
+    <div class="cat-card" onclick="setFilterAndScroll('accesorios')"><div class="cat-emoji">🎒</div><div class="cat-name">Accesorios</div><div class="cat-cnt">9 productos</div></div>
+    <div class="cat-card" onclick="setFilterAndScroll('oferta')"><div class="cat-emoji">🏷️</div><div class="cat-name">Ofertas</div><div class="cat-cnt">8 productos</div></div>
+  </div>
+</section>
+
+<!-- ═══ PRODUCTS ═══ -->
+<section id="products" class="section">
+  <div class="sec-header">
+    <div class="sec-tag">Colección 2026</div>
+    <h2 class="sec-title">PRODUCTOS <span class="a">ESTRELLA</span></h2>
+  </div>
+  <div class="filters" id="filterBar">
+    <button class="flt on" onclick="setFilter(this,'todos')">Todos</button>
+    <button class="flt" onclick="setFilter(this,'nuevo')">🆕 Nuevo</button>
+    <button class="flt" onclick="setFilter(this,'oferta')">🏷️ Oferta</button>
+    <button class="flt" onclick="setFilter(this,'hombre')">Hombre</button>
+    <button class="flt" onclick="setFilter(this,'mujer')">Mujer</button>
+    <button class="flt" onclick="setFilter(this,'accesorios')">Accesorios</button>
+    <button class="flt" onclick="setFilter(this,'running')">Running</button>
+    <button class="flt" onclick="setFilter(this,'gym')">Gym</button>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- ═══ TRENDING PACKS ═══ -->
+<section id="packs" class="section section-alt">
+  <div class="sec-header">
+    <div class="sec-tag">En tendencia 🔥</div>
+    <h2 class="sec-title">PAQUETES <span class="a">VIP</span></h2>
+  </div>
+  <div class="packs-grid">
+    <div class="pack-card">
+      <div class="pack-ribbon">MÁS VENDIDO</div>
+      <div class="pack-emojis">🏃👕🩳</div>
+      <div class="pack-name">Pack Runner Pro</div>
+      <div class="pack-desc">El kit completo para entrenamientos de alto impacto. Camiseta dry-fit + short compresión + calcetines técnicos.</div>
+      <div class="pack-items">
+        <div class="pack-item">Camiseta Volt Pro (1 ud)</div>
+        <div class="pack-item">Short Running Elite (1 ud)</div>
+        <div class="pack-item">Calcetines Pro Grip 3-pack</div>
+        <div class="pack-item">Bolsa de regalo Sportín</div>
+      </div>
+      <div class="pack-footer">
+        <div><span class="pack-price">S/ 179</span><span style="color:var(--muted);font-size:.85rem;text-decoration:line-through;margin-left:8px">S/ 233</span></div>
+        <span class="pack-save">Ahorras 23%</span>
+      </div>
+      <button class="btn-v" style="width:100%;margin-top:16px;justify-content:center" onclick="addPackToCart()">🛒 Añadir al carrito</button>
+    </div>
+    <div class="pack-card">
+      <div class="pack-ribbon">NUEVO</div>
+      <div class="pack-emojis">🧘👚🩱</div>
+      <div class="pack-name">Pack Mujer Zen</div>
+      <div class="pack-desc">Para ella. Leggings de alto soporte + sports bra + camiseta de entrenamiento. Conjunto completo para yoga y gym.</div>
+      <div class="pack-items">
+        <div class="pack-item">Leggings PowerFlex (1 ud)</div>
+        <div class="pack-item">Sports Bra Ultra (1 ud)</div>
+        <div class="pack-item">Camiseta Yoga Zen (1 ud)</div>
+        <div class="pack-item">Bolsa deportiva Sportín</div>
+      </div>
+      <div class="pack-footer">
+        <div><span class="pack-price">S/ 229</span><span style="color:var(--muted);font-size:.85rem;text-decoration:line-through;margin-left:8px">S/ 313</span></div>
+        <span class="pack-save">Ahorras 27%</span>
+      </div>
+      <button class="btn-v" style="width:100%;margin-top:16px;justify-content:center" onclick="addPackToCart2()">🛒 Añadir al carrito</button>
+    </div>
+    <div class="pack-card">
+      <div class="pack-ribbon">TENDENCIA</div>
+      <div class="pack-emojis">🏋️🧥🎒</div>
+      <div class="pack-name">Pack Gym Total</div>
+      <div class="pack-desc">Todo para tu sesión en el gym. Hoodie térmico + short compresión + bolsa Sportín + accesorios.</div>
+      <div class="pack-items">
+        <div class="pack-item">Hoodie Thermal X (1 ud)</div>
+        <div class="pack-item">Short Compresión (1 ud)</div>
+        <div class="pack-item">Bolsa Gym Sportín (1 ud)</div>
+        <div class="pack-item">Calcetines Pro x2 pares</div>
+      </div>
+      <div class="pack-footer">
+        <div><span class="pack-price">S/ 259</span><span style="color:var(--muted);font-size:.85rem;text-decoration:line-through;margin-left:8px">S/ 338</span></div>
+        <span class="pack-save">Ahorras 23%</span>
+      </div>
+      <button class="btn-v" style="width:100%;margin-top:16px;justify-content:center" onclick="addPackToCart3()">🛒 Añadir al carrito</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MÉTODOS DE PAGO ═══ -->
+<section id="pagos" class="section payment-section">
+  <div class="sec-header">
+    <div class="sec-tag">Compra segura</div>
+    <h2 class="sec-title">MÉTODOS DE <span class="a">PAGO</span></h2>
+  </div>
+  <div class="pay-grid">
+    <div class="pay-card"><div class="pay-icon-big">📱</div><div class="pay-name">Yape</div><div class="pay-desc">Pago instantáneo con QR</div></div>
+    <div class="pay-card"><div class="pay-icon-big">💳</div><div class="pay-name">Tarjeta Visa</div><div class="pay-desc">Débito y crédito</div></div>
+    <div class="pay-card"><div class="pay-icon-big">💳</div><div class="pay-name">Mastercard</div><div class="pay-desc">Débito y crédito</div></div>
+    <div class="pay-card"><div class="pay-icon-big">🔵</div><div class="pay-name">PayPal</div><div class="pay-desc">Pago internacional seguro</div></div>
+    <div class="pay-card"><div class="pay-icon-big">💚</div><div class="pay-name">PagoEfectivo</div><div class="pay-desc">Pago en efectivo por código</div></div>
+    <div class="pay-card"><div class="pay-icon-big">🏦</div><div class="pay-name">Transferencia</div><div class="pay-desc">BCP, Interbank, BBVA</div></div>
+    <div class="pay-card"><div class="pay-icon-big">📲</div><div class="pay-name">Plin</div><div class="pay-desc">Pago digital inmediato</div></div>
+    <div class="pay-card"><div class="pay-icon-big">🟠</div><div class="pay-name">American Express</div><div class="pay-desc">Tarjeta premium</div></div>
+  </div>
+  <div class="pay-secure-note">
+    <span>🔒</span> Todos los pagos están protegidos con cifrado SSL de 256 bits y protocolo PCI-DSS. Tu información nunca se almacena.
+  </div>
+</section>
+
+<!-- ═══ REVIEWS ═══ -->
+<section id="reviews" class="section section-alt">
+  <div class="sec-header">
+    <div class="sec-tag">Lo dicen nuestros clientes</div>
+    <h2 class="sec-title">RESEÑAS <span class="a">VERIFICADAS</span></h2>
+  </div>
+  <div class="rating-summary">
+    <div class="rating-big">
+      <div class="rating-num">4.8</div>
+      <div class="rating-stars-big">★★★★★</div>
+      <div class="rating-total">+2,340 reseñas</div>
+    </div>
+    <div class="rating-bars">
+      <div class="rb-row"><span class="rb-label">5 ★</span><div class="rb-bg"><div class="rb-fill" style="width:78%"></div></div><span class="rb-pct">78%</span></div>
+      <div class="rb-row"><span class="rb-label">4 ★</span><div class="rb-bg"><div class="rb-fill" style="width:14%"></div></div><span class="rb-pct">14%</span></div>
+      <div class="rb-row"><span class="rb-label">3 ★</span><div class="rb-bg"><div class="rb-fill" style="width:5%"></div></div><span class="rb-pct">5%</span></div>
+      <div class="rb-row"><span class="rb-label">2 ★</span><div class="rb-bg"><div class="rb-fill" style="width:2%"></div></div><span class="rb-pct">2%</span></div>
+      <div class="rb-row"><span class="rb-label">1 ★</span><div class="rb-bg"><div class="rb-fill" style="width:1%"></div></div><span class="rb-pct">1%</span></div>
+    </div>
+  </div>
+  <div class="reviews-grid" id="reviewsGrid"></div>
+</section>
+
+<!-- ═══ POLÍTICA DE DEVOLUCIONES ═══ -->
+<section id="devoluciones" class="section">
+  <div class="sec-header">
+    <div class="sec-tag">Sin complicaciones</div>
+    <h2 class="sec-title">POLÍTICA DE <span class="a">DEVOLUCIONES</span></h2>
+  </div>
+  <div class="policy-grid">
+    <div class="pol-card">
+      <div class="pol-icon">📅</div>
+      <div class="pol-title">30 días para devolver</div>
+      <div class="pol-text">Tienes 30 días calendario desde que recibes tu pedido para solicitar un cambio o devolución. Sin preguntas complicadas.</div>
+    </div>
+    <div class="pol-card">
+      <div class="pol-icon">🚚</div>
+      <div class="pol-title">Recojo gratuito</div>
+      <div class="pol-text">Coordinamos el recojo de tu prenda en la dirección que indiques sin costo adicional para ti. Solo contáctanos.</div>
+    </div>
+    <div class="pol-card">
+      <div class="pol-icon">💰</div>
+      <div class="pol-title">Reembolso total</div>
+      <div class="pol-text">Devolvemos el 100% de tu dinero en 5-7 días hábiles al mismo método de pago que usaste. Sin descuentos ni comisiones.</div>
+    </div>
+    <div class="pol-card">
+      <div class="pol-icon">✅</div>
+      <div class="pol-title">Condiciones sencillas</div>
+      <div class="pol-text">La prenda debe estar sin uso, con etiquetas originales y en su empaque. Prendas de natación y ropa interior no son elegibles por higiene.</div>
+    </div>
+    <div class="pol-card">
+      <div class="pol-icon">📦</div>
+      <div class="pol-title">Proceso rápido</div>
+      <div class="pol-text">Escríbenos por WhatsApp o correo. En menos de 24 horas te enviamos el código de devolución y coordinamos el recojo.</div>
+    </div>
+    <div class="pol-card">
+      <div class="pol-icon">🔄</div>
+      <div class="pol-title">Cambio de talla gratis</div>
+      <div class="pol-text">Si el producto no es de tu talla, hacemos el cambio sin costo adicional. Aplica para la primera solicitud por pedido.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DASHBOARD ═══ -->
+<section id="dashboard" class="section section-alt">
+  <div class="sec-header">
+    <div class="sec-tag">Indicadores en vivo</div>
+    <h2 class="sec-title">DASHBOARD DE <span class="a">VENTAS</span></h2>
+  </div>
+  <div class="dash-kpis">
+    <div class="kpi"><div class="kpi-l">Ventas semanales</div><div class="kpi-v">S/ 24,860</div><div class="kpi-ch kpi-up">↑ 18.4% vs semana ant.</div></div>
+    <div class="kpi"><div class="kpi-l">Pedidos totales</div><div class="kpi-v">312</div><div class="kpi-ch kpi-up">↑ 11.2%</div></div>
+    <div class="kpi"><div class="kpi-l">Ticket promedio</div><div class="kpi-v">S/ 79.7</div><div class="kpi-ch kpi-up">↑ 6.5%</div></div>
+    <div class="kpi"><div class="kpi-l">Conversión</div><div class="kpi-v">4.8%</div><div class="kpi-ch kpi-dn">↓ 0.3%</div></div>
+    <div class="kpi"><div class="kpi-l">Stock bajo</div><div class="kpi-v" style="color:var(--orange)">3</div><div class="kpi-ch" style="color:var(--orange)">⚠ Productos en alerta</div></div>
+  </div>
+  <div class="dash-grid">
+    <div class="chart-box">
+      <div class="chart-ttl">Ventas por día — Esta semana <span class="live-tag"><span class="live-dot"></span>LIVE</span></div>
+      <div class="bar-chart" id="barChart"></div>
+    </div>
+    <div class="chart-box">
+      <div class="chart-ttl">Top productos</div>
+      <ul class="top-list" id="topList"></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NEWSLETTER ═══ -->
+<section class="nl-section">
+  <div class="sec-tag" style="color:var(--black)">Comunidad Sportín</div>
+  <h2 class="sec-title">SUSCRÍBETE Y GANA <span style="-webkit-text-stroke:2px var(--black);color:transparent">15% OFF</span></h2>
+  <p>Tu primera compra con descuento exclusivo para suscriptores.</p>
+  <div class="nl-form">
+    <input type="email" class="nl-input" placeholder="tu@email.com" id="nlEmail">
+    <button class="nl-btn" onclick="subscribeNl()">Suscribirme →</button>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer id="contacto">
+  <div class="ft-grid">
+    <div class="ft-brand">
+      <span class="logo-text">SPORT<span>ÍN</span></span>
+      <p class="ft-desc">Ropa deportiva de alto rendimiento para atletas que no se conforman. Lima, Perú — Envíos a todo el país.</p>
+      <div class="ft-socials">
+        <a href="https://tiktok.com/@sportin" target="_blank" rel="noopener" class="soc-btn soc-tiktok" title="TikTok Sportín">
+          <!-- TikTok icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.93a8.16 8.16 0 004.77 1.52V7.01a4.85 4.85 0 01-1-.32z"/></svg>
+        </a>
+        <a href="https://instagram.com/sportin" target="_blank" rel="noopener" class="soc-btn soc-ig" title="Instagram Sportín">
+          <!-- Instagram icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://wa.me/51999999999?text=Hola%20Sportín!%20Quisiera%20consultar..." target="_blank" rel="noopener" class="soc-btn soc-wsp" title="WhatsApp Sportín">
+          <!-- WhatsApp icon -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4>Tienda</h4>
+      <ul class="ft-links">
+        <li><a href="#products">Nueva colección</a></li>
+        <li><a href="#products">Hombre</a></li>
+        <li><a href="#products">Mujer</a></li>
+        <li><a href="#packs">Paquetes VIP</a></li>
+        <li><a href="#products">Outlet</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Ayuda</h4>
+      <ul class="ft-links">
+        <li><a href="#devoluciones">Devoluciones</a></li>
+        <li><a href="#">Guía de tallas</a></li>
+        <li><a href="#">Seguimiento</a></li>
+        <li><a href="#">Preguntas frecuentes</a></li>
+        <li><a href="https://wa.me/51999999999" target="_blank">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Empresa</h4>
+      <ul class="ft-links">
+        <li><a href="#hero">Sobre Sportín</a></li>
+        <li><a href="#">Sostenibilidad</a></li>
+        <li><a href="#">Embajadores</a></li>
+        <li><a href="#">Blog deportivo</a></li>
+        <li><a href="#">Trabaja con nosotros</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2026 Sportín. Todos los derechos reservados. | Lima, Perú</div>
+    <div class="trust-row">
+      <span class="trust">🔒 SSL 256-bit</span>
+      <span class="trust">✅ PCI-DSS</span>
+      <span class="trust">🇵🇪 Hecho en Perú</span>
+      <span class="trust">📦 Envíos Olva Courier</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ CART SIDEBAR ═══ -->
+<div id="cartOverlay" onclick="closeOnOverlay(event)">
+  <div class="cart-panel">
+    <div class="cart-hdr">
+      <div class="cart-ttl">🛒 Tu carrito</div>
+      <button class="cart-x" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty-msg"><div style="font-size:3.5rem;margin-bottom:12px">🛒</div><p>Tu carrito está vacío</p></div>
+    </div>
+    <div id="cartFoot" style="display:none">
+      <div class="cart-foot">
+        <div class="cart-ssl"><span>🔒</span> Cifrado SSL 256 bits · PCI-DSS</div>
+        <div class="cart-subtotal"><span>Subtotal</span><span id="cartSub">S/ 0</span></div>
+        <div class="cart-subtotal"><span>Envío</span><span style="color:var(--green)">Gratis (sobre S/100)</span></div>
+        <div class="cart-total-row">
+          <span class="cart-total-label">Total</span>
+          <span class="cart-total-val" id="cartTotal">S/ 0</span>
+        </div>
+        <button class="checkout-btn" onclick="openCheckout()">🔒 Pagar de forma segura</button>
+        <div class="pay-methods">
+          <span class="pm">📱 Yape</span>
+          <span class="pm">💳 Visa</span>
+          <span class="pm">💳 Mastercard</span>
+          <span class="pm">🔵 PayPal</span>
+          <span class="pm">📲 Plin</span>
+          <span class="pm">💚 PagoEfectivo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CHECKOUT MODAL ═══ -->
+<div id="checkoutModal">
+  <div class="modal-box">
+    <h3>Finalizar compra</h3>
+    <div class="modal-steps">
+      <div class="mstep on" id="step1tab">1 · Datos</div>
+      <div class="mstep" id="step2tab">2 · Envío</div>
+      <div class="mstep" id="step3tab">3 · Pago</div>
+    </div>
+    <!-- Step 1: personal data -->
+    <div class="mform on" id="mform1">
+      <div class="fg"><label>Nombre completo</label><input type="text" id="f_name" placeholder="Juan Pérez"></div>
+      <div class="fg"><label>Correo electrónico</label><input type="email" id="f_email" placeholder="juan@email.com"></div>
+      <div class="fg"><label>Teléfono / WhatsApp</label><input type="tel" id="f_phone" placeholder="+51 999 999 999"></div>
+      <div class="fg"><label>DNI / RUC</label><input type="text" id="f_dni" placeholder="12345678"></div>
+      <div class="modal-nav">
+        <button class="btn-modal-back" onclick="closeCheckout()">Cancelar</button>
+        <button class="btn-modal-next" onclick="nextStep(2)">Continuar →</button>
+      </div>
+    </div>
+    <!-- Step 2: shipping -->
+    <div class="mform" id="mform2">
+      <div class="fg"><label>Departamento</label>
+        <select id="f_dep"><option>Lima</option><option>Arequipa</option><option>Cusco</option><option>Trujillo</option><option>Ancash</option><option>Piura</option><option>Otro</option></select>
+      </div>
+      <div class="fg"><label>Dirección completa</label><input type="text" id="f_addr" placeholder="Av. Los Olivos 123, Miraflores"></div>
+      <div class="fg-row">
+        <div class="fg"><label>Distrito</label><input type="text" id="f_dist" placeholder="Miraflores"></div>
+        <div class="fg"><label>Referencia</label><input type="text" id="f_ref" placeholder="Cerca al parque"></div>
+      </div>
+      <div class="fg"><label>Tipo de entrega</label>
+        <select id="f_ship"><option>Estándar (3-5 días) — Gratis sobre S/100</option><option>Express 24-48H — S/ 15 adicional</option><option>Recojo en tienda — Lima Miraflores</option></select>
+      </div>
+      <div class="modal-nav">
+        <button class="btn-modal-back" onclick="nextStep(1)">← Volver</button>
+        <button class="btn-modal-next" onclick="nextStep(3)">Continuar →</button>
+      </div>
+    </div>
+    <!-- Step 3: payment -->
+    <div class="mform" id="mform3">
+      <div class="pay-opts">
+        <div class="pay-opt sel" onclick="selPay(this,'yape')"><div class="pay-opt-icon">📱</div>Yape</div>
+        <div class="pay-opt" onclick="selPay(this,'visa')"><div class="pay-opt-icon">💳</div>Visa</div>
+        <div class="pay-opt" onclick="selPay(this,'mc')"><div class="pay-opt-icon">💳</div>Mastercard</div>
+        <div class="pay-opt" onclick="selPay(this,'paypal')"><div class="pay-opt-icon">🔵</div>PayPal</div>
+        <div class="pay-opt" onclick="selPay(this,'plin')"><div class="pay-opt-icon">📲</div>Plin</div>
+        <div class="pay-opt" onclick="selPay(this,'pago')"><div class="pay-opt-icon">💚</div>PagoEfectivo</div>
+      </div>
+      <div class="order-summary" id="orderSummary"></div>
+      <div class="modal-nav">
+        <button class="btn-modal-back" onclick="nextStep(2)">← Volver</button>
+        <button class="btn-modal-next" onclick="confirmOrder()">✅ Confirmar pedido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SUCCESS MODAL ═══ -->
+<div id="successModal">
+  <div class="success-box">
+    <div class="success-icon">✅</div>
+    <h3>¡Pedido confirmado!</h3>
+    <p>Gracias por tu compra en <strong>Sportín</strong>. Recibirás un correo de confirmación en breve y tu pedido estará en camino pronto.</p>
+    <div class="tracking-label">Código de trazabilidad</div>
+    <div class="tracking-code" id="trackCode">SPT-2026-XXXXXX</div>
+    <p style="font-size:.8rem;color:var(--muted)">Guarda este código para rastrear tu pedido en tiempo real. Te llegará el estado a tu WhatsApp.</p>
+    <button class="btn-v" style="width:100%;justify-content:center;margin-top:16px" onclick="closeSuccess()">🏠 Seguir comprando</button>
+  </div>
+</div>
+
+<!-- ═══ CHATBOT ═══ -->
+<div style="position:relative">
+  <button id="chatToggle" onclick="toggleChat()" title="Habla con SportBot">
+    🤖
+    <span class="chat-unread" id="chatUnread">1</span>
+  </button>
+</div>
+<div id="chatWin">
+  <div class="chat-hdr">
+    <div class="bot-av">🤖</div>
+    <div>
+      <div class="bot-n">SportBot — Asistente Sportín</div>
+      <div class="bot-s"><span class="sdot"></span> En línea ahora</div>
+    </div>
+    <button class="chat-xbtn" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="qicks">
+    <button class="qick" onclick="qick('¿Cuánto stock hay del Leggings PowerFlex?')">📦 Stock</button>
+    <button class="qick" onclick="qick('¿Cuánto tiempo tarda el envío?')">🚚 Envío</button>
+    <button class="qick" onclick="qick('¿Por qué empresa hacen los envíos?')">📮 Courier</button>
+    <button class="qick" onclick="qick('¿Cómo hago una devolución?')">🔄 Devolución</button>
+    <button class="qick" onclick="qick('¿Tienen descuentos o promociones?')">🏷️ Descuentos</button>
+    <button class="qick" onclick="qick('¿Cómo pago con Yape?')">📱 Yape</button>
+  </div>
+  <div class="chat-inp-area">
+    <input type="text" class="chat-inp" id="chatInp" placeholder="Escribe tu consulta..." onkeypress="chatKey(event)">
+    <button class="chat-send" onclick="sendMsg()">➤</button>
+  </div>
+</div>
+
+<!-- TOAST CONTAINER -->
+<div id="toastC"></div>
+
+<script>
+// ═══ DATA ═══
+const PRODUCTS = [
+  {id:1,name:'Camiseta Volt Pro',cat:'Hombre',emoji:'👕',badge:'NUEVO',btype:'badge-new',price:89,oldP:null,rating:4.8,rev:234,sizes:['S','M','L','XL'],tags:['nuevo','hombre','running','gym'],stock:18,maxStock:18},
+  {id:2,name:'Leggings PowerFlex',cat:'Mujer',emoji:'🩱',badge:'-25%',btype:'badge-sale',price:119,oldP:159,rating:4.9,rev:512,sizes:['XS','S','M','L'],tags:['oferta','mujer','gym'],stock:5,maxStock:20},
+  {id:3,name:'Short Running Elite',cat:'Hombre',emoji:'🩳',badge:'HOT',btype:'badge-hot',price:65,oldP:null,rating:4.7,rev:187,sizes:['S','M','L','XL','XXL'],tags:['nuevo','hombre','running'],stock:22,maxStock:22},
+  {id:4,name:'Sports Bra Ultra',cat:'Mujer',emoji:'👙',badge:'TOP',btype:'badge-new',price:75,oldP:null,rating:5.0,rev:328,sizes:['XS','S','M','L'],tags:['mujer','gym'],stock:12,maxStock:12},
+  {id:5,name:'Hoodie Thermal X',cat:'Hombre',emoji:'🧥',badge:'-30%',btype:'badge-sale',price:139,oldP:199,rating:4.6,rev:143,sizes:['S','M','L','XL'],tags:['oferta','hombre','gym'],stock:3,maxStock:15},
+  {id:6,name:'Calcetines Pro Grip',cat:'Accesorios',emoji:'🧦',badge:'PACK 3',btype:'badge-pack',price:39,oldP:null,rating:4.5,rev:89,sizes:['S/M','L/XL'],tags:['accesorios','running'],stock:40,maxStock:40},
+  {id:7,name:'Bolsa Gym Sportín',cat:'Accesorios',emoji:'🎒',badge:'NUEVO',btype:'badge-new',price:95,oldP:null,rating:4.8,rev:67,sizes:['ÚNICA'],tags:['accesorios','gym'],stock:0,maxStock:10},
+  {id:8,name:'Camiseta Yoga Zen',cat:'Mujer',emoji:'👚',badge:'-20%',btype:'badge-sale',price:69,oldP:89,rating:4.7,rev:201,sizes:['XS','S','M','L','XL'],tags:['oferta','mujer'],stock:9,maxStock:20},
+  {id:9,name:'Mallas Running Pro',cat:'Hombre',emoji:'🩲',badge:'NUEVO',btype:'badge-new',price:109,oldP:null,rating:4.6,rev:98,sizes:['S','M','L','XL'],tags:['nuevo','hombre','running'],stock:14,maxStock:14},
+  {id:10,name:'Top Deportivo Mujer',cat:'Mujer',emoji:'👗',badge:'HOT',btype:'badge-hot',price:59,oldP:null,rating:4.8,rev:156,sizes:['XS','S','M','L'],tags:['mujer','gym'],stock:7,maxStock:7},
+  {id:11,name:'Guantes Gym Pro',cat:'Accesorios',emoji:'🥊',badge:'NUEVO',btype:'badge-new',price:45,oldP:null,rating:4.4,rev:44,sizes:['S','M','L'],tags:['accesorios','gym'],stock:25,maxStock:25},
+  {id:12,name:'Chompa Térmica',cat:'Hombre',emoji:'🧣',badge:'-15%',btype:'badge-sale',price:79,oldP:95,rating:4.5,rev:77,sizes:['M','L','XL','XXL'],tags:['oferta','hombre'],stock:2,maxStock:12},
+];
+
+const REVIEWS = [
+  {name:'María G.',date:'Hace 2 días',product:'Leggings PowerFlex',stars:5,text:'¡Increíbles! La tela es súper cómoda y no se transparenta. Los uso en yoga y en el gym. Definitivamente volvería a comprar.',init:'M',color:'#c6f135'},
+  {name:'Carlos R.',date:'Hace 5 días',product:'Hoodie Thermal X',stars:5,text:'Pedido llegó en 2 días por envío express. La hoodie es de muy buena calidad, abriga perfecto para las mañanas de entrenamiento en Lima.',init:'C',color:'#3b82f6'},
+  {name:'Lucía P.',date:'Hace 1 semana',product:'Sports Bra Ultra',stars:5,text:'El mejor sports bra que he tenido. Soporte de alto impacto y muy cómodo. El tono de colores es exactamente el de las fotos.',init:'L',color:'#f97316'},
+  {name:'Diego M.',date:'Hace 1 semana',product:'Short Running Elite',stars:4,text:'Muy buena calidad. Tarda un poco en secar pero eso ya es normal en shorts de compresión. Lo recomiendo para corredores.',init:'D',color:'#22c55e'},
+  {name:'Ana S.',date:'Hace 2 semanas',product:'Camiseta Volt Pro',stars:5,text:'Llegó rápido y bien empaquetado. La tela dry-fit es excelente. Tengo 3 camisetas Sportín y ninguna se ha desteñido ni deformado.',init:'A',color:'#e63946'},
+  {name:'Roberto T.',date:'Hace 3 semanas',product:'Mallas Running Pro',stars:5,text:'El servicio al cliente es de 10. Tuve un problema con la talla y lo resolvieron en 24 horas. Las mallas son excelentes para running.',init:'R',color:'#8b5cf6'},
+];
+
+let cart = [], wishlist = [], currentStep = 1, selectedPay = 'yape', quantities = {}, chatOpen = false;
+
+// ═══ PUSH ═══
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('pushOverlay').style.display = 'flex', 1000);
+});
+
+function acceptPush() {
+  dismissPush();
+  // Visual "sound" indicator
+  const si = document.getElementById('soundIndicator');
+  si.style.display = 'flex';
+  setTimeout(() => { si.style.opacity = '0'; si.style.transition = 'opacity .5s'; setTimeout(() => si.style.display = 'none', 500); }, 3000);
+  showToast('🔔','¡Notificaciones activadas!','Recibirás alertas de drops y ofertas exclusivas');
+}
+
+function dismissPush() {
+  const o = document.getElementById('pushOverlay');
+  o.style.opacity = '0'; o.style.transition = 'opacity .4s';
+  setTimeout(() => o.style.display = 'none', 400);
+}
+
+// ═══ PRODUCTS ═══
+function getStockColor(stock, maxStock) {
+  const pct = maxStock > 0 ? stock / maxStock : 0;
+  if(stock === 0) return '#e63946';
+  if(pct < 0.3) return '#f97316';
+  return '#22c55e';
+}
+
+function getStockLabel(stock) {
+  if(stock === 0) return '<span class="stock-out">❌ Sin stock</span>';
+  if(stock <= 5) return `<span class="stock-low">⚠️ Solo ${stock} disponibles</span>`;
+  return `<span class="stock-ok">✅ En stock (${stock})</span>`;
+}
+
+function renderProducts(filter = 'todos') {
+  const grid = document.getElementById('productsGrid');
+  const list = filter === 'todos' ? PRODUCTS : PRODUCTS.filter(p => p.tags.includes(filter));
+  if(list.length === 0) { grid.innerHTML = '<p style="color:var(--muted);grid-column:1/-1;text-align:center;padding:40px 0">No hay productos en esta categoría.</p>'; return; }
+  grid.innerHTML = '';
+  list.forEach(p => {
+    if(!quantities[p.id]) quantities[p.id] = 1;
+    const card = document.createElement('div');
+    card.className = 'prod-card';
+    const stockPct = p.maxStock > 0 ? (p.stock / p.maxStock) * 100 : 0;
+    const stockColor = getStockColor(p.stock, p.maxStock);
+    const isOut = p.stock === 0;
+    card.innerHTML = `
+      <div class="prod-img">
+        <div class="prod-img-grad"></div>
+        <div class="prod-emoji-wrap">${p.emoji}</div>
+        ${p.badge ? `<span class="prod-badge ${p.btype}">${p.badge}</span>` : ''}
+        <button class="prod-wish ${wishlist.includes(p.id)?'on':''}" onclick="toggleWish(${p.id},this)">${wishlist.includes(p.id)?'❤️':'🤍'}</button>
+        <div class="stock-bar-wrap">
+          <div class="stock-bar-bg"><div class="stock-bar-fill" style="width:${stockPct}%;background:${stockColor}"></div></div>
+        </div>
+      </div>
+      <div class="prod-info">
+        <div class="prod-cat">${p.cat}</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-rating">
+          <span class="stars">${'★'.repeat(Math.round(p.rating))}${'☆'.repeat(5-Math.round(p.rating))}</span>
+          <span class="rev-cnt">(${p.rev})</span>
+        </div>
+        <div class="prod-sizes">${p.sizes.map(s=>`<span class="sz">${s}</span>`).join('')}</div>
+        <div class="prod-stock-txt">${getStockLabel(p.stock)}</div>
+        <div class="prod-footer">
+          <div>
+            <span class="prod-price">S/ ${p.price}</span>
+            ${p.oldP ? `<span class="prod-old">S/ ${p.oldP}</span>` : ''}
+          </div>
+          <div class="add-row">
+            <div class="qty-wrap">
+              <button class="qb" onclick="changeQty(${p.id},-1,event)" ${isOut?'disabled':''}>−</button>
+              <span class="qnum" id="qty-${p.id}">${quantities[p.id]}</span>
+              <button class="qb" onclick="changeQty(${p.id},1,event)" ${isOut||quantities[p.id]>=p.stock?'disabled':''}>+</button>
+            </div>
+            <button class="add-btn" onclick="addToCart(${p.id})" ${isOut?'disabled':''}>
+              ${isOut ? '❌ Agotado' : '🛒 Añadir'}
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function changeQty(id, delta, e) {
+  e.stopPropagation();
+  const p = PRODUCTS.find(x => x.id === id);
+  if(!p) return;
+  quantities[id] = Math.max(1, Math.min(p.stock, (quantities[id] || 1) + delta));
+  const el = document.getElementById(`qty-${id}`);
+  if(el) el.textContent = quantities[id];
+  // Update + button state
+  const card = el?.closest('.prod-card');
+  if(card) {
+    const plusBtn = card.querySelectorAll('.qb')[1];
+    if(plusBtn) plusBtn.disabled = quantities[id] >= p.stock;
+  }
+}
+
+function setFilter(btn, filter) {
+  document.querySelectorAll('.flt').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  renderProducts(filter);
+}
+
+function setFilterAndScroll(cat) {
+  const catToFilter = { running:'running', gym:'gym', mujer:'mujer', hombre:'hombre', accesorios:'accesorios', oferta:'oferta' };
+  const filter = catToFilter[cat] || 'todos';
+  document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => {
+    document.querySelectorAll('.flt').forEach(b => b.classList.remove('on'));
+    const btns = document.querySelectorAll('.flt');
+    btns.forEach(b => { if(b.textContent.toLowerCase().includes(filter)) b.classList.add('on'); });
+    renderProducts(filter);
+  }, 400);
+}
+
+// ═══ WISHLIST ═══
+function toggleWish(id, btn) {
+  if(wishlist.includes(id)) {
+    wishlist = wishlist.filter(w => w !== id);
+    btn.innerHTML = '🤍'; btn.classList.remove('on');
+    showToast('🤍','Eliminado de favoritos','');
+  } else {
+    wishlist.push(id);
+    btn.innerHTML = '❤️'; btn.classList.add('on');
+    showToast('❤️','Añadido a favoritos','');
+  }
+}
+
+// ═══ CART ═══
+function addToCart(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if(!p || p.stock === 0) return;
+  const qty = quantities[id] || 1;
+  const existing = cart.find(i => i.id === id);
+  const currentInCart = existing ? existing.qty : 0;
+  const toAdd = Math.min(qty, p.stock - currentInCart);
+  if(toAdd <= 0) { showToast('⚠️','Stock máximo alcanzado',`Solo hay ${p.stock} en inventario`); return; }
+  if(existing) { existing.qty += toAdd; } else { cart.push({ ...p, qty: toAdd }); }
+  updateCartUI();
+  openCart();
+  showToast('✅', `${p.name} añadido`, `Cantidad: ${toAdd} · S/ ${p.price * toAdd}`);
+}
+
+function addPackToCart() {
+  cart.push({ id:901, name:'Pack Runner Pro', cat:'Paquete', emoji:'🏃', price:179, qty:1, stock:10 });
+  updateCartUI(); openCart();
+  showToast('📦','Pack Runner Pro añadido','¡Ahorras 23%!');
+}
+function addPackToCart2() {
+  cart.push({ id:902, name:'Pack Mujer Zen', cat:'Paquete', emoji:'🧘', price:229, qty:1, stock:8 });
+  updateCartUI(); openCart();
+  showToast('📦','Pack Mujer Zen añadido','¡Ahorras 27%!');
+}
+function addPackToCart3() {
+  cart.push({ id:903, name:'Pack Gym Total', cat:'Paquete', emoji:'🏋️', price:259, qty:1, stock:6 });
+  updateCartUI(); openCart();
+  showToast('📦','Pack Gym Total añadido','¡Ahorras 23%!');
+}
+
+function updateCartUI() {
+  const count = cart.reduce((s, i) => s + i.qty, 0);
+  document.getElementById('cartCount').textContent = count;
+  const body = document.getElementById('cartBody');
+  const foot = document.getElementById('cartFoot');
+  if(cart.length === 0) {
+    body.innerHTML = '<div class="cart-empty-msg"><div style="font-size:3.5rem;margin-bottom:12px">🛒</div><p>Tu carrito está vacío</p></div>';
+    foot.style.display = 'none';
+    return;
+  }
+  foot.style.display = 'block';
+  body.innerHTML = cart.map(item => `
+    <div class="ci">
+      <div class="ci-img">${item.emoji}</div>
+      <div class="ci-info">
+        <div class="ci-name">${item.name}</div>
+        <div class="ci-meta">${item.cat} · Talla M · S/ ${item.price} c/u</div>
+        <div class="ci-controls">
+          <button class="ci-qb" onclick="ciChangeQty(${item.id},-1)">−</button>
+          <span class="ci-q">${item.qty}</span>
+          <button class="ci-qb" onclick="ciChangeQty(${item.id},1)" ${item.qty >= (item.stock||999)?'disabled style="opacity:.4"':''}>+</button>
+          <button class="ci-del" onclick="removeItem(${item.id})">🗑 Quitar</button>
+        </div>
+      </div>
+      <div class="ci-price">S/ ${item.price * item.qty}</div>
+    </div>
+  `).join('');
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('cartSub').textContent = `S/ ${total}`;
+  document.getElementById('cartTotal').textContent = `S/ ${total}`;
+}
+
+function ciChangeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if(!item) return;
+  const maxStock = item.stock || 999;
+  item.qty = Math.max(1, Math.min(maxStock, item.qty + delta));
+  if(item.qty <= 0 && delta < 0) { removeItem(id); return; }
+  updateCartUI();
+}
+
+function removeItem(id) {
+  cart = cart.filter(i => i.id !== id);
+  updateCartUI();
+}
+
+function openCart() { document.getElementById('cartOverlay').classList.add('open'); }
+function closeCart() { document.getElementById('cartOverlay').classList.remove('open'); }
+function closeOnOverlay(e) { if(e.target === document.getElementById('cartOverlay')) closeCart(); }
+
+// ═══ CHECKOUT ═══
+function openCheckout() {
+  if(cart.length === 0) return;
+  closeCart();
+  document.getElementById('checkoutModal').classList.add('open');
+  nextStep(1);
+}
+function closeCheckout() { document.getElementById('checkoutModal').classList.remove('open'); }
+
+function nextStep(n) {
+  currentStep = n;
+  [1,2,3].forEach(i => {
+    document.getElementById('mform'+i).classList.toggle('on', i === n);
+    const tab = document.getElementById('step'+i+'tab');
+    tab.classList.toggle('on', i === n);
+    tab.classList.toggle('done', i < n);
+  });
+  if(n === 3) renderOrderSummary();
+}
+
+function renderOrderSummary() {
+  const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
+  document.getElementById('orderSummary').innerHTML = `
+    ${cart.map(i => `<div class="os-row"><span>${i.emoji} ${i.name} x${i.qty}</span><span>S/ ${i.price * i.qty}</span></div>`).join('')}
+    <div class="os-total"><span>Total a pagar</span><span class="os-total-v">S/ ${total}</span></div>
+  `;
+}
+
+function selPay(el, method) {
+  document.querySelectorAll('.pay-opt').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel');
+  selectedPay = method;
+}
+
+function confirmOrder() {
+  const name = document.getElementById('f_name').value.trim();
+  const email = document.getElementById('f_email').value.trim();
+  if(!name || !email) { showToast('⚠️','Completa los datos personales','Vuelve al paso 1'); nextStep(1); return; }
+  closeCheckout();
+  const code = 'SPT-2026-' + Math.random().toString(36).substr(2,6).toUpperCase();
+  document.getElementById('trackCode').textContent = code;
+  document.getElementById('successModal').classList.add('open');
+  cart = []; updateCartUI();
+  showToast('🎉','¡Compra exitosa!',`Código: ${code}`);
+}
+
+function closeSuccess() {
+  document.getElementById('successModal').classList.remove('open');
+}
+
+// ═══ SEARCH ═══
+let searchTimeout;
+function liveSearch(val) {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => {
+    const res = document.getElementById('searchResults');
+    if(!val.trim()) { res.style.display = 'none'; return; }
+    const matches = PRODUCTS.filter(p => p.name.toLowerCase().includes(val.toLowerCase()) || p.cat.toLowerCase().includes(val.toLowerCase()));
+    if(matches.length === 0) {
+      res.style.display = 'block';
+      res.innerHTML = '<div class="sr-none">No se encontraron productos</div>';
+      return;
+    }
+    res.style.display = 'block';
+    res.innerHTML = matches.map(p => `
+      <div class="sr-item" onclick="addToCart(${p.id})">
+        <div class="sr-emoji">${p.emoji}</div>
+        <div class="sr-info">
+          <div class="sr-name">${p.name}</div>
+          <div class="sr-cat">${p.cat} · ${p.stock > 0 ? 'En stock' : 'Sin stock'}</div>
+        </div>
+        <div class="sr-price">S/ ${p.price}</div>
+      </div>
+    `).join('');
+  }, 200);
+}
+
+function showSearch() {
+  const val = document.getElementById('searchInput').value;
+  if(val.trim()) liveSearch(val);
+}
+
+function hideSearch() {
+  setTimeout(() => { document.getElementById('searchResults').style.display = 'none'; }, 200);
+}
+
+// ═══ CHATBOT ═══
+const BOT = {
+  stock: () => {
+    const lowStock = PRODUCTS.filter(p => p.stock > 0 && p.stock <= 5);
+    const outStock = PRODUCTS.filter(p => p.stock === 0);
+    let msg = '📦 <strong>Estado de inventario actual:</strong><br>';
+    if(outStock.length > 0) msg += `<br>❌ Sin stock: ${outStock.map(p=>p.name).join(', ')}.`;
+    if(lowStock.length > 0) msg += `<br>⚠️ Stock bajo: ${lowStock.map(p=>`${p.name} (${p.stock} uds)`).join(', ')}.`;
+    msg += '<br><br>El resto de productos tiene stock disponible. 😊';
+    return msg;
+  },
+  envio: () => '🚚 <strong>Tiempos de entrega:</strong><br><br>• <strong>Lima Metropolitana:</strong> 1-2 días hábiles.<br>• <strong>Provincias:</strong> 3-5 días hábiles.<br>• <strong>Express 24H:</strong> disponible con cargo adicional de S/ 15.<br><br>Recibirás un código de seguimiento por WhatsApp al despachar tu pedido.',
+  courier: () => '📮 <strong>Empresas de envío:</strong><br><br>Trabajamos con:<br>• <strong>Olva Courier</strong> — envíos nacionales.<br>• <strong>Shalom</strong> — llegamos a más de 150 ciudades.<br>• <strong>DHL Express</strong> — envíos urgentes.<br>• <strong>Recojo en tienda</strong> — Miraflores, Lima.<br><br>Puedes rastrear tu pedido con el código de trazabilidad que recibirás.',
+  devolucion: () => '🔄 <strong>Política de devoluciones:</strong><br><br>• 30 días para solicitar cambio o devolución.<br>• Recojo gratuito en tu dirección.<br>• Reembolso 100% al método de pago original (5-7 días).<br>• Cambio de talla sin costo extra.<br><br>Escríbenos al WhatsApp: <strong>+51 999 999 999</strong>',
+  descuento: () => '🏷️ <strong>Descuentos activos:</strong><br><br>• -30% Hoodie Thermal X.<br>• -25% Leggings PowerFlex.<br>• -20% Camiseta Yoga Zen.<br>• 15% OFF suscribiéndote al newsletter.<br>• Paquetes VIP con ahorro de hasta 27%.<br><br>¿Quieres agregar algo al carrito? 😊',
+  yape: () => '📱 <strong>Pago con Yape:</strong><br><br>Al finalizar tu compra, selecciona "Yape" como método de pago. Te aparecerá un QR y el número de celular asociado.<br><br>También aceptamos <strong>Plin, tarjetas Visa/Mastercard, PayPal y PagoEfectivo</strong>. ¡Todo 100% seguro!',
+  talla: () => '📏 <strong>Guía de tallas:</strong><br><br>• <strong>XS:</strong> Talla 28-30 (cintura 63-68 cm).<br>• <strong>S:</strong> Talla 30-32 (cintura 68-73 cm).<br>• <strong>M:</strong> Talla 32-34 (cintura 73-79 cm).<br>• <strong>L:</strong> Talla 34-36 (cintura 79-84 cm).<br>• <strong>XL:</strong> Talla 38-40 (cintura 84-90 cm).<br><br>¿Tienes dudas con una prenda específica? ¡Pregúntame!',
+  default: () => '¡Hola! 👋 Soy <strong>SportBot</strong>, el asistente de Sportín.<br><br>Puedo ayudarte con:<br>📦 Stock de productos<br>🚚 Tiempos de envío<br>📮 Empresas de courier<br>🔄 Devoluciones<br>📱 Métodos de pago<br>📏 Guía de tallas<br><br>¿Qué necesitas saber?'
+};
+
+function getBotReply(text) {
+  const t = text.toLowerCase();
+  if(t.includes('stock') || t.includes('inventario') || t.includes('queda') || t.includes('disponible') || t.includes('hay')) return BOT.stock();
+  if(t.includes('envío') || t.includes('envio') || t.includes('tiempo') || t.includes('tarda') || t.includes('llega') || t.includes('entrega')) return BOT.envio();
+  if(t.includes('courier') || t.includes('empresa') || t.includes('olva') || t.includes('shalom') || t.includes('por dónde') || t.includes('despacha')) return BOT.courier();
+  if(t.includes('devoluci') || t.includes('cambio') || t.includes('devolver') || t.includes('reembolso')) return BOT.devolucion();
+  if(t.includes('descuento') || t.includes('oferta') || t.includes('promo') || t.includes('preci')) return BOT.descuento();
+  if(t.includes('yape') || t.includes('pago') || t.includes('tarjeta') || t.includes('plin') || t.includes('paypal')) return BOT.yape();
+  if(t.includes('talla') || t.includes('medida') || t.includes('tamaño')) return BOT.talla();
+  return BOT.default();
+}
+
+function toggleChat() {
+  chatOpen = !chatOpen;
+  const win = document.getElementById('chatWin');
+  win.classList.toggle('open', chatOpen);
+  document.getElementById('chatUnread').style.display = 'none';
+  if(chatOpen && document.getElementById('chatMsgs').children.length === 0) {
+    setTimeout(() => addBotMsg(BOT.default()), 400);
+  }
+}
+
+function addBotMsg(html) {
+  const msgs = document.getElementById('chatMsgs');
+  const now = new Date().toLocaleTimeString('es', {hour:'2-digit',minute:'2-digit'});
+  const typing = document.createElement('div');
+  typing.className = 'cmsg bot';
+  typing.innerHTML = `<div class="typing"><span class="td"></span><span class="td"></span><span class="td"></span></div>`;
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(() => {
+    typing.innerHTML = `<div class="cbubble">${html}</div><div class="ctime">${now}</div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 800);
+}
+
+function addUserMsg(text) {
+  const msgs = document.getElementById('chatMsgs');
+  const now = new Date().toLocaleTimeString('es', {hour:'2-digit',minute:'2-digit'});
+  const msg = document.createElement('div');
+  msg.className = 'cmsg user';
+  msg.innerHTML = `<div class="cbubble">${text}</div><div class="ctime" style="text-align:right">${now}</div>`;
+  msgs.appendChild(msg);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function sendMsg() {
+  const inp = document.getElementById('chatInp');
+  const text = inp.value.trim();
+  if(!text) return;
+  addUserMsg(text);
+  inp.value = '';
+  setTimeout(() => addBotMsg(getBotReply(text)), 200);
+}
+
+function qick(text) {
+  if(!chatOpen) toggleChat();
+  setTimeout(() => { addUserMsg(text); setTimeout(() => addBotMsg(getBotReply(text)), 200); }, 100);
+}
+
+function chatKey(e) { if(e.key === 'Enter') sendMsg(); }
+
+// ═══ REVIEWS ═══
+function renderReviews() {
+  document.getElementById('reviewsGrid').innerHTML = REVIEWS.map(r => `
+    <div class="rv-card">
+      <div class="rv-top">
+        <div class="rv-avatar" style="background:${r.color}">${r.init}</div>
+        <div><div class="rv-name">${r.name}</div><div class="rv-date">${r.date}</div></div>
+      </div>
+      <div class="rv-stars">${'★'.repeat(r.stars)}${'☆'.repeat(5-r.stars)}</div>
+      <div class="rv-product">${r.product}</div>
+      <div class="rv-text">${r.text}</div>
+      <div class="rv-verified">✅ Compra verificada</div>
+    </div>
+  `).join('');
+}
+
+// ═══ DASHBOARD ═══
+function renderBarChart() {
+  const data = [
+    {day:'Lun',val:2800},{day:'Mar',val:3200},{day:'Mié',val:2600},
+    {day:'Jue',val:4100},{day:'Vie',val:5800},{day:'Sáb',val:4600},{day:'Dom',val:1760}
+  ];
+  const max = Math.max(...data.map(d => d.val));
+  document.getElementById('barChart').innerHTML = data.map(d => {
+    const pct = Math.round(d.val / max * 100);
+    return `<div class="bc">
+      <div class="bar" style="height:${pct}%"><span class="btt">S/ ${d.val.toLocaleString()}</span></div>
+      <div class="bl">${d.day}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderTopList() {
+  const tops = [
+    {name:'Leggings PowerFlex',n:87,pct:100},{name:'Camiseta Volt Pro',n:64,pct:74},
+    {name:'Pack Runner Pro',n:52,pct:60},{name:'Sports Bra Ultra',n:48,pct:55},{name:'Hoodie Thermal X',n:36,pct:41}
+  ];
+  document.getElementById('topList').innerHTML = tops.map((t,i) => `
+    <li class="top-item">
+      <span class="top-rank">${String(i+1).padStart(2,'0')}</span>
+      <span class="top-name">${t.name}</span>
+      <div class="top-bar"><div class="top-fill" style="width:${t.pct}%"></div></div>
+      <span class="top-n">${t.n} uds</span>
+    </li>
+  `).join('');
+}
+
+// ═══ NEWSLETTER ═══
+function subscribeNl() {
+  const v = document.getElementById('nlEmail').value;
+  if(!v || !v.includes('@')) { showToast('⚠️','Email inválido','Ingresa un correo válido'); return; }
+  document.getElementById('nlEmail').value = '';
+  showToast('🎉','¡Suscripción exitosa!','Tu 15% de descuento llegará pronto al correo');
+}
+
+// ═══ TOAST ═══
+function showToast(icon, title, sub) {
+  const c = document.getElementById('toastC');
+  const t = document.createElement('div');
+  t.className = 'toast';
+  t.innerHTML = `<span class="t-icon">${icon}</span><div><div class="t-body">${title}</div>${sub?`<div class="t-sub">${sub}</div>`:''}</div>`;
+  c.appendChild(t);
+  setTimeout(() => { t.style.opacity='0'; t.style.transition='opacity .4s'; setTimeout(() => t.remove(), 400); }, 3000);
+}
+
+// ═══ INIT ═══
+document.addEventListener('DOMContentLoaded', () => {
+  renderProducts();
+  renderReviews();
+  renderBarChart();
+  renderTopList();
+});
+</script>
+</body>
+</html>
