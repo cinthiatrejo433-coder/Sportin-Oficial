@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<a href="index.html">Inicio</a>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sportín - Producto</title>
+</head>
+<body>
+  <script>
+// ═══════════════════════════════════════════════
+//  SPORTÍN — SHARED DATA & UTILITIES
+// ═══════════════════════════════════════════════
+
+const SPORTIN = {
+
+  // ─── PRODUCTS ───────────────────────────────
+  PRODUCTS: [
+    {id:1, name:'Camiseta Volt Pro',    cat:'Hombre',     emoji:'👕', badge:'NUEVO',  btype:'badge-new',  price:89,  oldP:null, rating:4.8, rev:234, sizes:['S','M','L','XL'],       tags:['nuevo','hombre','running','gym'], stock:18, maxStock:18},
+    {id:2, name:'Leggings PowerFlex',   cat:'Mujer',      emoji:'🩱', badge:'-25%',   btype:'badge-sale', price:119, oldP:159,  rating:4.9, rev:512, sizes:['XS','S','M','L'],        tags:['oferta','mujer','gym'],          stock:5,  maxStock:20},
+    {id:3, name:'Short Running Elite',  cat:'Hombre',     emoji:'🩳', badge:'HOT',    btype:'badge-hot',  price:65,  oldP:null, rating:4.7, rev:187, sizes:['S','M','L','XL','XXL'], tags:['nuevo','hombre','running'],      stock:22, maxStock:22},
+    {id:4, name:'Sports Bra Ultra',     cat:'Mujer',      emoji:'👙', badge:'TOP',    btype:'badge-new',  price:75,  oldP:null, rating:5.0, rev:328, sizes:['XS','S','M','L'],        tags:['mujer','gym'],                   stock:12, maxStock:12},
+    {id:5, name:'Hoodie Thermal X',     cat:'Hombre',     emoji:'🧥', badge:'-30%',   btype:'badge-sale', price:139, oldP:199,  rating:4.6, rev:143, sizes:['S','M','L','XL'],        tags:['oferta','hombre','gym'],         stock:3,  maxStock:15},
+    {id:6, name:'Calcetines Pro Grip',  cat:'Accesorios', emoji:'🧦', badge:'PACK 3', btype:'badge-pack', price:39,  oldP:null, rating:4.5, rev:89,  sizes:['S/M','L/XL'],            tags:['accesorios','running'],          stock:40, maxStock:40},
+    {id:7, name:'Bolsa Gym Sportín',    cat:'Accesorios', emoji:'🎒', badge:'NUEVO',  btype:'badge-new',  price:95,  oldP:null, rating:4.8, rev:67,  sizes:['ÚNICA'],                 tags:['accesorios','gym'],              stock:0,  maxStock:10},
+    {id:8, name:'Camiseta Yoga Zen',    cat:'Mujer',      emoji:'👚', badge:'-20%',   btype:'badge-sale', price:69,  oldP:89,   rating:4.7, rev:201, sizes:['XS','S','M','L','XL'],   tags:['oferta','mujer'],                stock:9,  maxStock:20},
+    {id:9, name:'Mallas Running Pro',   cat:'Hombre',     emoji:'🩲', badge:'NUEVO',  btype:'badge-new',  price:109, oldP:null, rating:4.6, rev:98,  sizes:['S','M','L','XL'],        tags:['nuevo','hombre','running'],      stock:14, maxStock:14},
+    {id:10,name:'Top Deportivo Mujer',  cat:'Mujer',      emoji:'👗', badge:'HOT',    btype:'badge-hot',  price:59,  oldP:null, rating:4.8, rev:156, sizes:['XS','S','M','L'],        tags:['mujer','gym'],                   stock:7,  maxStock:7},
+    {id:11,name:'Guantes Gym Pro',      cat:'Accesorios', emoji:'🥊', badge:'NUEVO',  btype:'badge-new',  price:45,  oldP:null, rating:4.4, rev:44,  sizes:['S','M','L'],             tags:['accesorios','gym'],              stock:25, maxStock:25},
+    {id:12,name:'Chompa Térmica',       cat:'Hombre',     emoji:'🧣', badge:'-15%',   btype:'badge-sale', price:79,  oldP:95,   rating:4.5, rev:77,  sizes:['M','L','XL','XXL'],      tags:['oferta','hombre'],               stock:2,  maxStock:12},
+  ],
+
+  // ─── PACKAGES ───────────────────────────────
+  PACKAGES: [
+    {id:901, name:'Pack Runner Pro',  emoji:'🏃', price:179, oldP:233, save:'23%', color:'#c6f135',
+     desc:'El kit completo para entrenamientos de alto impacto.',
+     items:['Camiseta Volt Pro','Short Running Elite','Calcetines Pro Grip x3','Bolsa de regalo'], stock:10},
+    {id:902, name:'Pack Mujer Zen',   emoji:'🧘', price:229, oldP:313, save:'27%', color:'#f97316',
+     desc:'Para ella. Conjunto completo para yoga y gym.',
+     items:['Leggings PowerFlex','Sports Bra Ultra','Camiseta Yoga Zen','Bolsa deportiva'], stock:8},
+    {id:903, name:'Pack Gym Total',   emoji:'🏋️', price:259, oldP:338, save:'23%', color:'#3b82f6',
+     desc:'Todo para tu sesión en el gym.',
+     items:['Hoodie Thermal X','Guantes Gym Pro','Bolsa Gym Sportín','Calcetines Pro x2'], stock:6},
+  ],
+
+  // ─── REVIEWS ────────────────────────────────
+  REVIEWS: [
+    {name:'María G.',   date:'Hace 2 días',   product:'Leggings PowerFlex',  stars:5, text:'¡Increíbles! La tela es súper cómoda y no se transparenta. Los uso en yoga y en el gym. Definitivamente volvería a comprar.',  init:'M', color:'#c6f135'},
+    {name:'Carlos R.',  date:'Hace 5 días',   product:'Hoodie Thermal X',    stars:5, text:'Pedido llegó en 2 días por envío express. La hoodie es de muy buena calidad, abriga perfecto para las mañanas de entrenamiento.', init:'C', color:'#3b82f6'},
+    {name:'Lucía P.',   date:'Hace 1 semana', product:'Sports Bra Ultra',    stars:5, text:'El mejor sports bra que he tenido. Soporte de alto impacto y muy cómodo. El tono de colores es exactamente el de las fotos.',    init:'L', color:'#f97316'},
+    {name:'Diego M.',   date:'Hace 1 semana', product:'Short Running Elite', stars:4, text:'Muy buena calidad. Tarda un poco en secar pero es normal en shorts de compresión. Lo recomiendo para corredores.',               init:'D', color:'#22c55e'},
+    {name:'Ana S.',     date:'Hace 2 semanas',product:'Camiseta Volt Pro',   stars:5, text:'Llegó rápido y bien empaquetado. La tela dry-fit es excelente. Tengo 3 camisetas Sportín y ninguna se ha desteñido.',            init:'A', color:'#e63946'},
+    {name:'Roberto T.', date:'Hace 3 semanas',product:'Mallas Running Pro',  stars:5, text:'El servicio al cliente es de 10. Tuve un problema con la talla y lo resolvieron en 24 horas. Las mallas son excelentes.',         init:'R', color:'#8b5cf6'},
+    {name:'Fernanda C.',date:'Hace 1 mes',    product:'Top Deportivo Mujer', stars:5, text:'Me encantó el diseño y la calidad. El envío fue rapidísimo. Pedí talla M y quedó perfecta según la guía de tallas.',             init:'F', color:'#ec4899'},
+    {name:'José L.',    date:'Hace 1 mes',    product:'Pack Runner Pro',     stars:5, text:'El paquete llegó completo y muy bien empaquetado. Ahorra bastante comprándolo junto. La calidad de cada prenda es excelente.',     init:'J', color:'#14b8a6'},
+  ],
+
+  // ─── USERS (mock) ───────────────────────────
+  USERS: [
+    {email:'admin@sportin.com',  password:'sportin2026', name:'Admin Sportín', role:'admin'},
+    {email:'cliente@gmail.com',  password:'cliente123',  name:'María González', role:'user'},
+  ],
+
+  // ─── CART HELPERS ───────────────────────────
+  getCart() {
+    try { return JSON.parse(localStorage.getItem('spt_cart') || '[]'); } catch{ return []; }
+  },
+  setCart(cart) {
+    localStorage.setItem('spt_cart', JSON.stringify(cart));
+    this.updateCartBadge();
+  },
+  updateCartBadge() {
+    const cart = this.getCart();
+    const count = cart.reduce((s,i) => s + i.qty, 0);
+    document.querySelectorAll('.cart-badge').forEach(el => el.textContent = count);
+  },
+  addToCart(id, qty=1) {
+    const p = this.PRODUCTS.find(x => x.id === id) || this.PACKAGES.find(x => x.id === id);
+    if(!p) return;
+    const cart = this.getCart();
+    const ex = cart.find(i => i.id === id);
+    const inCart = ex ? ex.qty : 0;
+    const toAdd = Math.min(qty, (p.stock||999) - inCart);
+    if(toAdd <= 0) { this.toast('⚠️','Stock máximo alcanzado',''); return false; }
+    if(ex) { ex.qty += toAdd; } else { cart.push({id, name:p.name, emoji:p.emoji||'📦', price:p.price, qty:toAdd, stock:p.stock||999}); }
+    this.setCart(cart);
+    this.toast('✅', `${p.name} añadido al carrito`, `Cantidad: ${toAdd}`);
+    return true;
+  },
+
+  // ─── AUTH ───────────────────────────────────
+  getSession() {
+    try { return JSON.parse(sessionStorage.getItem('spt_user') || 'null'); } catch{ return null; }
+  },
+  setSession(user) { sessionStorage.setItem('spt_user', JSON.stringify(user)); },
+  clearSession() { sessionStorage.removeItem('spt_user'); },
+  requireAuth() {
+    if(!this.getSession()) { window.location.href = 'login.html'; return false; }
+    return true;
+  },
+
+  // ─── TOAST ──────────────────────────────────
+  toast(icon, title, sub) {
+    let c = document.getElementById('toastC');
+    if(!c) { c = document.createElement('div'); c.id='toastC'; c.style.cssText='position:fixed;bottom:90px;left:24px;z-index:9999;display:flex;flex-direction:column;gap:8px'; document.body.appendChild(c); }
+    const t = document.createElement('div');
+    t.style.cssText='background:#1e1e1e;border:1px solid #c6f135;border-radius:12px;padding:12px 18px;display:flex;align-items:center;gap:10px;max-width:300px;animation:slideInLeft .35s ease;box-shadow:0 8px 32px rgba(0,0,0,.5)';
+    t.innerHTML = `<span style="font-size:1.2rem">${icon}</span><div><div style="font-size:.82rem;font-weight:600;color:#f0f0f0">${title}</div>${sub?`<div style="font-size:.73rem;color:#777">${sub}</div>`:''}</div>`;
+    c.appendChild(t);
+    setTimeout(() => { t.style.transition='opacity .4s'; t.style.opacity='0'; setTimeout(()=>t.remove(),400); }, 3000);
+  },
+
+  // ─── TRACKING CODE ──────────────────────────
+  genTrackingCode() {
+    return 'SPT-2026-' + Math.random().toString(36).substr(2,6).toUpperCase();
+  },
+};
+
+// Global keyframe for toast animation
+const _style = document.createElement('style');
+_style.textContent = '@keyframes slideInLeft{from{transform:translateX(-50px);opacity:0}to{transform:translateX(0);opacity:1}}';
+document.head.appendChild(_style);
+  </script>
+</body>
+</html>
