@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sportín | Iniciar sesión</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+body{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--black)}
+.login-bg{position:fixed;inset:0;background:linear-gradient(135deg,#0a0a0a 0%,#0d110d 60%,#0a0a0a 100%);z-index:0}
+.login-grid{position:fixed;inset:0;background-image:linear-gradient(rgba(198,241,53,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(198,241,53,.04) 1px,transparent 1px);background-size:52px 52px;z-index:0}
+.login-glow{position:fixed;top:20%;left:50%;transform:translateX(-50%);width:500px;height:400px;background:radial-gradient(circle,rgba(198,241,53,.07) 0%,transparent 70%);pointer-events:none;z-index:0}
+
+.login-wrap{position:relative;z-index:1;display:flex;width:100%;max-width:900px;min-height:100vh;align-items:center;justify-content:center;padding:24px}
+
+.login-card{background:var(--charcoal);border:1px solid var(--border);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;width:100%;max-width:860px;box-shadow:0 32px 80px rgba(0,0,0,.6);animation:slideUp .5s cubic-bezier(.4,0,.2,1)}
+
+/* LEFT PANEL */
+.login-left{background:var(--volt);padding:48px 40px;display:flex;flex-direction:column;justify-content:space-between}
+.brand-mark{display:flex;align-items:center;gap:10px;margin-bottom:40px}
+.brand-icon{width:44px;height:44px;background:var(--black);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--F);font-size:1.3rem;font-weight:900;color:var(--volt)}
+.brand-name{font-family:var(--F);font-size:2rem;font-weight:900;text-transform:uppercase;color:var(--black);letter-spacing:-.02em}
+.left-title{font-family:var(--F);font-size:3.2rem;font-weight:900;text-transform:uppercase;color:var(--black);line-height:.92;letter-spacing:-.02em;margin-bottom:16px}
+.left-sub{color:rgba(0,0,0,.6);font-size:.92rem;line-height:1.6;margin-bottom:32px}
+.left-features{display:flex;flex-direction:column;gap:12px}
+.lf-item{display:flex;align-items:center;gap:10px;color:var(--black);font-size:.85rem;font-weight:500}
+.lf-icon{width:32px;height:32px;background:rgba(0,0,0,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.left-footer{color:rgba(0,0,0,.5);font-size:.75rem;margin-top:32px}
+
+/* RIGHT PANEL */
+.login-right{padding:48px 40px;display:flex;flex-direction:column;justify-content:center}
+.login-right h2{font-family:var(--F);font-size:2rem;font-weight:900;text-transform:uppercase;margin-bottom:6px}
+.login-right h2 span{color:var(--volt)}
+.login-right .subtitle{color:var(--muted);font-size:.85rem;margin-bottom:32px}
+
+.tabs{display:flex;background:var(--mid);border-radius:10px;padding:4px;margin-bottom:28px;gap:4px}
+.tab{flex:1;padding:9px;text-align:center;border-radius:7px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);cursor:pointer;transition:var(--t);border:none;background:none}
+.tab.on{background:var(--volt);color:var(--black)}
+
+/* FORM */
+.login-form{display:none}
+.login-form.on{display:block}
+.input-wrap{position:relative;margin-bottom:14px}
+.input-wrap label{display:block;color:var(--muted);font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px}
+.input-wrap input{width:100%;background:var(--mid);border:1px solid var(--border);color:var(--white);padding:12px 14px 12px 42px;border-radius:9px;font-size:.9rem;outline:none;transition:var(--t);font-family:var(--B)}
+.input-wrap input:focus{border-color:var(--volt)}
+.input-wrap input.err{border-color:var(--red)}
+.input-ico{position:absolute;bottom:12px;left:14px;font-size:1rem;color:var(--muted)}
+.input-toggle{position:absolute;bottom:12px;right:12px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;transition:var(--t)}
+.input-toggle:hover{color:var(--volt)}
+.err-msg{color:var(--red);font-size:.72rem;margin-top:-10px;margin-bottom:10px;display:none}
+.err-msg.show{display:block}
+
+.remember-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.checkbox-wrap{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);cursor:pointer}
+.checkbox-wrap input{accent-color:var(--volt);width:15px;height:15px}
+.forgot-link{color:var(--volt);font-size:.8rem;text-decoration:none;transition:var(--t)}
+.forgot-link:hover{color:var(--volt-d)}
+
+.btn-login{width:100%;background:var(--volt);color:var(--black);border:none;padding:14px;border-radius:10px;font-weight:700;font-size:1rem;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:var(--t);display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px}
+.btn-login:hover{background:var(--volt-d);transform:translateY(-2px);box-shadow:0 12px 36px rgba(198,241,53,.3)}
+
+.divider{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.divider span{color:var(--muted);font-size:.75rem}
+
+.social-logins{display:flex;gap:10px;margin-bottom:20px}
+.soc-login{flex:1;background:var(--mid);border:1px solid var(--border);color:var(--white);padding:10px;border-radius:9px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:.8rem;font-weight:500;cursor:pointer;transition:var(--t)}
+.soc-login:hover{border-color:var(--volt);color:var(--volt)}
+
+.switch-hint{text-align:center;color:var(--muted);font-size:.82rem}
+.switch-hint a{color:var(--volt);font-weight:600;cursor:pointer;text-decoration:none}
+.switch-hint a:hover{color:var(--volt-d)}
+
+/* terms */
+.terms-check{display:flex;align-items:flex-start;gap:8px;font-size:.78rem;color:var(--muted);margin-bottom:18px}
+.terms-check input{accent-color:var(--volt);width:14px;height:14px;flex-shrink:0;margin-top:2px}
+.terms-check a{color:var(--volt);text-decoration:none}
+
+/* alert */
+.alert{border-radius:9px;padding:12px 16px;font-size:.83rem;margin-bottom:16px;display:none}
+.alert.show{display:flex;align-items:center;gap:9px}
+.alert-success{background:rgba(34,197,94,.12);border:1px solid var(--green);color:var(--green)}
+.alert-error{background:rgba(230,57,70,.12);border:1px solid var(--red);color:var(--red)}
+
+/* demo credentials */
+.demo-box{background:var(--volt-dim);border:1px solid rgba(198,241,53,.2);border-radius:10px;padding:12px 16px;margin-bottom:18px}
+.demo-box p{font-size:.75rem;color:var(--muted);margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.demo-creds{display:flex;flex-direction:column;gap:3px}
+.demo-cred{font-size:.78rem;color:#ccc}
+.demo-cred span{color:var(--volt);font-weight:600}
+
+@media(max-width:680px){
+  .login-card{grid-template-columns:1fr}
+  .login-left{display:none}
+  .login-right{padding:36px 24px}
+}
+</style>
+</head>
+<body>
+<div class="login-bg"></div>
+<div class="login-grid"></div>
+<div class="login-glow"></div>
+
+<div class="login-wrap">
+  <div class="login-card">
+
+    <!-- LEFT BRAND PANEL -->
+    <div class="login-left">
+      <div>
+        <div class="brand-mark">
+          <div class="brand-icon">S</div>
+          <span class="brand-name">SPORTÍN</span>
+        </div>
+        <div class="left-title">ENTRENA<br>SIN<br>LÍMITES</div>
+        <p class="left-sub">Accede a tu cuenta y descubre ropa deportiva de alto rendimiento hecha para atletas que no se detienen.</p>
+        <div class="left-features">
+          <div class="lf-item"><div class="lf-icon">🚚</div>Envío gratis en pedidos +S/100</div>
+          <div class="lf-item"><div class="lf-icon">🔒</div>Pago 100% seguro — SSL 256 bits</div>
+          <div class="lf-item"><div class="lf-icon">🔄</div>Devoluciones gratis en 30 días</div>
+          <div class="lf-item"><div class="lf-icon">🎁</div>15% OFF en tu primera compra</div>
+        </div>
+      </div>
+      <div class="left-footer">© 2026 Sportín · Lima, Perú</div>
+    </div>
+
+    <!-- RIGHT FORM PANEL -->
+    <div class="login-right">
+      <h2>Bienvenido a <span>Sportín</span></h2>
+      <p class="subtitle">Ingresa a tu cuenta o crea una nueva</p>
+
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab on" onclick="switchTab('login')">Iniciar sesión</button>
+        <button class="tab" onclick="switchTab('register')">Crear cuenta</button>
+      </div>
+
+      <!-- ALERTS -->
+      <div class="alert alert-success" id="alertOk">✅ <span id="alertOkMsg"></span></div>
+      <div class="alert alert-error" id="alertErr">❌ <span id="alertErrMsg"></span></div>
+
+      <!-- LOGIN FORM -->
+      <div class="login-form on" id="formLogin">
+        <div class="demo-box">
+          <p>Credenciales de demo</p>
+          <div class="demo-creds">
+            <div class="demo-cred">📧 <span>admin@sportin.com</span> · 🔑 <span>sportin2026</span></div>
+            <div class="demo-cred">📧 <span>cliente@gmail.com</span> · 🔑 <span>cliente123</span></div>
+          </div>
+        </div>
+        <div class="input-wrap">
+          <label>Correo electrónico</label>
+          <span class="input-ico">📧</span>
+          <input type="email" id="loginEmail" placeholder="tu@email.com" autocomplete="email">
+          <div class="err-msg" id="errLoginEmail">Ingresa un correo válido</div>
+        </div>
+        <div class="input-wrap">
+          <label>Contraseña</label>
+          <span class="input-ico">🔒</span>
+          <input type="password" id="loginPass" placeholder="Tu contraseña" autocomplete="current-password" onkeypress="if(event.key==='Enter')doLogin()">
+          <button class="input-toggle" onclick="togglePass('loginPass',this)">👁</button>
+          <div class="err-msg" id="errLoginPass">Ingresa tu contraseña</div>
+        </div>
+        <div class="remember-row">
+          <label class="checkbox-wrap"><input type="checkbox" id="rememberMe"> Recordarme</label>
+          <a href="#" class="forgot-link" onclick="showForgot()">¿Olvidaste tu contraseña?</a>
+        </div>
+        <button class="btn-login" onclick="doLogin()">🚀 Iniciar sesión</button>
+        <div class="divider"><span>o continúa con</span></div>
+        <div class="social-logins">
+          <button class="soc-login" onclick="socialLogin('Google')">🌐 Google</button>
+          <button class="soc-login" onclick="socialLogin('Facebook')">📘 Facebook</button>
+        </div>
+        <p class="switch-hint">¿No tienes cuenta? <a onclick="switchTab('register')">Regístrate gratis</a></p>
+      </div>
+
+      <!-- REGISTER FORM -->
+      <div class="login-form" id="formRegister">
+        <div class="input-wrap">
+          <label>Nombre completo</label>
+          <span class="input-ico">👤</span>
+          <input type="text" id="regName" placeholder="Juan Pérez">
+          <div class="err-msg" id="errRegName">Ingresa tu nombre</div>
+        </div>
+        <div class="input-wrap">
+          <label>Correo electrónico</label>
+          <span class="input-ico">📧</span>
+          <input type="email" id="regEmail" placeholder="tu@email.com" autocomplete="email">
+          <div class="err-msg" id="errRegEmail">Ingresa un correo válido</div>
+        </div>
+        <div class="input-wrap">
+          <label>Contraseña</label>
+          <span class="input-ico">🔒</span>
+          <input type="password" id="regPass" placeholder="Mínimo 6 caracteres" oninput="checkPassStrength(this.value)">
+          <button class="input-toggle" onclick="togglePass('regPass',this)">👁</button>
+          <div class="err-msg" id="errRegPass">Mínimo 6 caracteres</div>
+        </div>
+        <div style="margin-bottom:12px">
+          <div style="display:flex;gap:4px;height:4px;border-radius:2px;overflow:hidden;margin-bottom:5px">
+            <div id="ps1" style="flex:1;background:var(--border);border-radius:2px;transition:var(--t)"></div>
+            <div id="ps2" style="flex:1;background:var(--border);border-radius:2px;transition:var(--t)"></div>
+            <div id="ps3" style="flex:1;background:var(--border);border-radius:2px;transition:var(--t)"></div>
+            <div id="ps4" style="flex:1;background:var(--border);border-radius:2px;transition:var(--t)"></div>
+          </div>
+          <span id="passLabel" style="font-size:.7rem;color:var(--muted)"></span>
+        </div>
+        <div class="input-wrap">
+          <label>Confirmar contraseña</label>
+          <span class="input-ico">🔒</span>
+          <input type="password" id="regPass2" placeholder="Repite tu contraseña">
+          <div class="err-msg" id="errRegPass2">Las contraseñas no coinciden</div>
+        </div>
+        <div class="terms-check">
+          <input type="checkbox" id="termsCheck">
+          <span>Acepto los <a href="#">Términos y condiciones</a> y la <a href="#">Política de privacidad</a> de Sportín</span>
+        </div>
+        <button class="btn-login" onclick="doRegister()">🎉 Crear mi cuenta</button>
+        <p class="switch-hint">¿Ya tienes cuenta? <a onclick="switchTab('login')">Inicia sesión</a></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="shared.js"></script>
+<script>
+const USERS = [
+  {email:'admin@sportin.com', password:'sportin2026', name:'Admin Sportín', role:'admin'},
+  {email:'cliente@gmail.com', password:'cliente123',  name:'María González', role:'user'},
+];
+
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('on', (i===0&&tab==='login')||(i===1&&tab==='register')));
+  document.getElementById('formLogin').classList.toggle('on', tab==='login');
+  document.getElementById('formRegister').classList.toggle('on', tab==='register');
+  clearAlerts();
+}
+
+function clearAlerts() {
+  document.getElementById('alertOk').classList.remove('show');
+  document.getElementById('alertErr').classList.remove('show');
+}
+
+function showAlert(type, msg) {
+  clearAlerts();
+  if(type==='ok') { document.getElementById('alertOkMsg').textContent=msg; document.getElementById('alertOk').classList.add('show'); }
+  else { document.getElementById('alertErrMsg').textContent=msg; document.getElementById('alertErr').classList.add('show'); }
+}
+
+function togglePass(id, btn) {
+  const inp = document.getElementById(id);
+  if(inp.type==='password') { inp.type='text'; btn.textContent='🙈'; }
+  else { inp.type='password'; btn.textContent='👁'; }
+}
+
+function doLogin() {
+  clearAlerts();
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass  = document.getElementById('loginPass').value;
+  let ok = true;
+  if(!email || !email.includes('@')) { document.getElementById('errLoginEmail').classList.add('show'); ok=false; } else document.getElementById('errLoginEmail').classList.remove('show');
+  if(!pass) { document.getElementById('errLoginPass').classList.add('show'); ok=false; } else document.getElementById('errLoginPass').classList.remove('show');
+  if(!ok) return;
+  const user = USERS.find(u => u.email===email && u.password===pass);
+  if(!user) { showAlert('err','Correo o contraseña incorrectos. Revisa las credenciales de demo.'); return; }
+  sessionStorage.setItem('spt_user', JSON.stringify(user));
+  showAlert('ok', `¡Bienvenido, ${user.name}! Redirigiendo...`);
+  setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+}
+
+function doRegister() {
+  clearAlerts();
+  const name  = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass  = document.getElementById('regPass').value;
+  const pass2 = document.getElementById('regPass2').value;
+  const terms = document.getElementById('termsCheck').checked;
+  let ok = true;
+  if(!name) { document.getElementById('errRegName').classList.add('show'); ok=false; } else document.getElementById('errRegName').classList.remove('show');
+  if(!email||!email.includes('@')) { document.getElementById('errRegEmail').classList.add('show'); ok=false; } else document.getElementById('errRegEmail').classList.remove('show');
+  if(pass.length<6) { document.getElementById('errRegPass').classList.add('show'); ok=false; } else document.getElementById('errRegPass').classList.remove('show');
+  if(pass!==pass2) { document.getElementById('errRegPass2').classList.add('show'); ok=false; } else document.getElementById('errRegPass2').classList.remove('show');
+  if(!terms) { showAlert('err','Debes aceptar los términos y condiciones.'); return; }
+  if(!ok) return;
+  const newUser = {email, password:pass, name, role:'user'};
+  sessionStorage.setItem('spt_user', JSON.stringify(newUser));
+  showAlert('ok', `¡Cuenta creada exitosamente! Bienvenido, ${name}!`);
+  setTimeout(() => { window.location.href = 'index.html'; }, 1400);
+}
+
+function socialLogin(provider) {
+  const fakeUser = {email:`usuario@${provider.toLowerCase()}.com`, name:`Usuario ${provider}`, role:'user'};
+  sessionStorage.setItem('spt_user', JSON.stringify(fakeUser));
+  showAlert('ok', `Conectado con ${provider}. Redirigiendo...`);
+  setTimeout(() => { window.location.href = 'index.html'; }, 1200);
+}
+
+function showForgot() {
+  const email = prompt('Ingresa tu correo para recuperar la contraseña:');
+  if(email && email.includes('@')) alert(`✅ Enlace de recuperación enviado a ${email}. Revisa tu bandeja.`);
+}
+
+function checkPassStrength(val) {
+  const bars = [document.getElementById('ps1'),document.getElementById('ps2'),document.getElementById('ps3'),document.getElementById('ps4')];
+  const label = document.getElementById('passLabel');
+  const strength = [/[a-z]/,/[A-Z]/,/[0-9]/,/[^a-zA-Z0-9]/].filter(r=>r.test(val)).length + (val.length>=8?1:0);
+  const levels = [{color:var_color('#e63946'),text:'Muy débil'},{color:'#f97316',text:'Débil'},{color:'#eab308',text:'Media'},{color:'#22c55e',text:'Fuerte'},{color:'#22c55e',text:'Muy fuerte'}];
+  function var_color(c){return c;}
+  const colors = ['#e63946','#f97316','#eab308','#22c55e','#22c55e'];
+  const texts = ['','Muy débil','Débil','Media','Fuerte','Muy fuerte'];
+  bars.forEach((b,i) => { b.style.background = i < strength ? colors[strength-1] : 'rgba(255,255,255,.08)'; });
+  label.textContent = val ? texts[Math.min(strength,5)] : '';
+  label.style.color = colors[Math.max(0,strength-1)];
+}
+
+// redirect if already logged in
+if(sessionStorage.getItem('spt_user')) window.location.href = 'index.html';
+</script>
+</body>
+</html>
